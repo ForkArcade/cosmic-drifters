@@ -1,5 +1,5 @@
-// Space Combat — Entry Point
-// Keybindings, game loop, ForkArcade integration
+// Cosmic Drifters — Entry Point
+// Keybindings, game loop, sektory, narracja, ForkArcade integration
 (function() {
   'use strict';
   var FA = window.FA;
@@ -17,6 +17,8 @@
   FA.bindKey('turbo',     ['Shift']);
   FA.bindKey('start',     [' ']);
   FA.bindKey('restart',   ['r']);
+  FA.bindKey('choiceYes', ['y']);
+  FA.bindKey('choiceNo',  ['n']);
 
   // === INPUT (akcje jednorazowe) ===
   FA.on('input:action', function(data) {
@@ -25,9 +27,20 @@
       Ship.beginGame();
       return;
     }
-    if (state.screen === 'death' && data.action === 'restart') {
+    if ((state.screen === 'death' || state.screen === 'victory') && data.action === 'restart') {
       Ship.startScreen();
       return;
+    }
+    // Choice Y/N
+    if (state.screen === 'playing' && state.choiceActive) {
+      if (data.action === 'choiceYes') {
+        Ship.resolveChoice(state, 1);
+        return;
+      }
+      if (data.action === 'choiceNo') {
+        Ship.resolveChoice(state, 0);
+        return;
+      }
     }
   });
 
@@ -94,21 +107,62 @@
       state.narrativeMessage.life -= dt;
     }
 
+    // Narrative queue — po wygasnieciu obecnej, pokaz nastepna
+    if (state.narrativeQueue && state.narrativeQueue.length > 0) {
+      if (!state.narrativeMessage || state.narrativeMessage.life <= 0) {
+        state.narrativeQueueTimer += dt;
+        if (state.narrativeQueueTimer > 500) {
+          var nextNode = state.narrativeQueue.shift();
+          Ship.showNarrative(nextNode);
+          state.narrativeQueueTimer = 0;
+          // Distress signal choice trigger
+          if (nextNode === 'distress_signal' && !state.distressTriggered) {
+            state.distressTriggered = true;
+            state.choiceActive = 'distress';
+            state.choiceTimer = 300;
+          }
+        }
+      }
+    }
+
+    // Choice timer countdown
+    if (state.choiceActive && state.choiceTimer > 0) {
+      state.choiceTimer--;
+      if (state.choiceTimer <= 0) {
+        // Auto-resolve: default = no
+        Ship.resolveChoice(state, 0);
+      }
+    }
+
+    // Pilot show timer
+    if (state.pilotShowTimer > 0) {
+      state.pilotShowTimer--;
+    }
+
     // Survival time
     state.survivalTime += dt / 1000;
 
-    // Respawn wrogow
-    if (state.enemies.length === 0) {
-      var count = Math.min(1 + Math.floor(state.kills / 3), 5);
-      for (var s = 0; s < count; s++) {
-        Ship.spawnEnemy(state);
+    // Sektor advancement — wave cleared
+    if (state.enemies.length === 0 && state.ship) {
+      if (!state.waveCleared) {
+        state.waveCleared = true;
+        // Sektor 7 cleared = victory
+        if (state.sector >= 7) {
+          Ship.gameOver(state);
+        } else {
+          // Krótka pauza, potem advance
+          state.sectorAdvanceTimer = 120; // 2 sekundy
+        }
       }
-      if (state.kills >= 5 && state.partsCollected >= 3) {
-        Ship.showNarrative('ship_growing');
+      if (state.sectorAdvanceTimer > 0) {
+        state.sectorAdvanceTimer--;
+        if (state.sectorAdvanceTimer <= 0) {
+          state.waveCleared = false;
+          Ship.advanceSector(state);
+        }
       }
-      if (state.enemies.length >= 4) {
-        Ship.showNarrative('overwhelmed');
-      }
+    } else {
+      state.waveCleared = false;
     }
 
     // Connectivity check — odczep niepolaczone czesci
