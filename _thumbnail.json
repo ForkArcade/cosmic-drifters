@@ -1,0 +1,260 @@
+{
+  "path": "/home/dadmor/code/fork-arcade/games/cosmic-drifters",
+  "w": 72,
+  "h": 32,
+  "layers": [
+    {
+      "res": [
+        72,
+        32
+      ],
+      "aa": "nearest",
+      "ops": [
+        {
+          "gradient": {
+            "from": "#000a14",
+            "to": "#060618",
+            "direction": "vertical"
+          }
+        },
+        {
+          "scatter": {
+            "color": "#ffffff",
+            "count": 35,
+            "seed": 77
+          }
+        },
+        {
+          "scatter": {
+            "color": "#4488cc",
+            "count": 12,
+            "seed": 33
+          }
+        },
+        {
+          "scatter": {
+            "color": "#88aaff",
+            "count": 8,
+            "seed": 55
+          }
+        }
+      ]
+    },
+    {
+      "res": [
+        72,
+        32
+      ],
+      "aa": "nearest",
+      "opacity": 0.15,
+      "ops": [
+        {
+          "line": {
+            "x1": 0,
+            "y1": 10,
+            "x2": 72,
+            "y2": 10,
+            "color": "#2a4a6a",
+            "width": 1
+          }
+        },
+        {
+          "line": {
+            "x1": 0,
+            "y1": 20,
+            "x2": 72,
+            "y2": 20,
+            "color": "#2a4a6a",
+            "width": 1
+          }
+        },
+        {
+          "line": {
+            "x1": 18,
+            "y1": 0,
+            "x2": 18,
+            "y2": 32,
+            "color": "#2a4a6a",
+            "width": 1
+          }
+        },
+        {
+          "line": {
+            "x1": 36,
+            "y1": 0,
+            "x2": 36,
+            "y2": 32,
+            "color": "#2a4a6a",
+            "width": 1
+          }
+        },
+        {
+          "line": {
+            "x1": 54,
+            "y1": 0,
+            "x2": 54,
+            "y2": 32,
+            "color": "#2a4a6a",
+            "width": 1
+          }
+        }
+      ]
+    },
+    {
+      "res": [
+        72,
+        32
+      ],
+      "aa": "nearest",
+      "ops": [
+        {
+          "pixels": {
+            "x": 22,
+            "y": 10,
+            "palette": {
+              "C": "#00ffff",
+              "E": "#44ff44",
+              "G": "#ff44ff",
+              "S": "#4488ff",
+              "g": "#00cccc"
+            },
+            "rows": [
+              "..G.G..",
+              "..CCC..",
+              ".SCCCS.",
+              "..CCC..",
+              ".E.E.E."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "res": [
+        72,
+        32
+      ],
+      "aa": "nearest",
+      "ops": [
+        {
+          "pixels": {
+            "x": 54,
+            "y": 12,
+            "palette": {
+              "c": "#ff8844",
+              "e": "#88ff44",
+              "g": "#ff4444"
+            },
+            "rows": [
+              ".g.",
+              ".c.",
+              ".e."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "res": [
+        72,
+        32
+      ],
+      "aa": "nearest",
+      "ops": [
+        {
+          "line": {
+            "x1": 29,
+            "y1": 10,
+            "x2": 29,
+            "y2": 5,
+            "color": "#00ffff",
+            "width": 1
+          }
+        },
+        {
+          "line": {
+            "x1": 26,
+            "y1": 10,
+            "x2": 26,
+            "y2": 7,
+            "color": "#00ffff",
+            "width": 1
+          }
+        },
+        {
+          "line": {
+            "x1": 55,
+            "y1": 12,
+            "x2": 55,
+            "y2": 9,
+            "color": "#ff6666",
+            "width": 1
+          }
+        }
+      ]
+    },
+    {
+      "res": [
+        72,
+        32
+      ],
+      "aa": "nearest",
+      "ops": [
+        {
+          "pixels": {
+            "x": 4,
+            "y": 4,
+            "palette": {
+              "s": "#d4a574",
+              "h": "#2a3a5a",
+              "v": "#00ffff",
+              "e": "#4ef0f0",
+              "i": "#ff4444"
+            },
+            "rows": [
+              ".hhh.",
+              ".sss.",
+              ".vvv.",
+              ".sis.",
+              ".s.s."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "res": [
+        72,
+        32
+      ],
+      "aa": "nearest",
+      "opacity": 0.3,
+      "ops": [
+        {
+          "circle": {
+            "cx": 25,
+            "cy": 13,
+            "r": 6,
+            "color": "#00ffff"
+          }
+        },
+        {
+          "circle": {
+            "cx": 24,
+            "cy": 17,
+            "r": 3,
+            "color": "#44ff44"
+          }
+        },
+        {
+          "circle": {
+            "cx": 26,
+            "cy": 17,
+            "r": 3,
+            "color": "#44ff44"
+          }
+        }
+      ]
+    }
+  ]
+}
