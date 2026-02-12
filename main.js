@@ -23,11 +23,11 @@
   // === INPUT (akcje jednorazowe) ===
   FA.on('input:action', function(data) {
     var state = FA.getState();
-    if (state.screen === 'start' && data.action === 'start') {
+    if (state.screen === 'start' && (data.action === 'start' || data.action === 'shoot')) {
       Ship.beginGame();
       return;
     }
-    if ((state.screen === 'death' || state.screen === 'victory') && data.action === 'restart') {
+    if ((state.screen === 'death' || state.screen === 'victory') && (data.action === 'restart' || data.action === 'shoot')) {
       Ship.startScreen();
       return;
     }
