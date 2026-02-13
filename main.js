@@ -7,6 +7,7 @@
   var colors = FA.lookup('config', 'colors');
 
   FA.initCanvas('game', cfg.canvasWidth, cfg.canvasHeight);
+  var _engineSoundTimer = 0;
 
   // === KEYBINDINGS ===
   FA.bindKey('thrust',    ['w', 'ArrowUp']);
@@ -153,6 +154,13 @@
             Physics.applyThrust(state.ship, state.ship.parts[i], base);
           }
         }
+        _engineSoundTimer -= dt;
+        if (_engineSoundTimer <= 0) {
+          FA.playSound('engine');
+          _engineSoundTimer = 100;
+        }
+      } else {
+        _engineSoundTimer = 0;
       }
       if (FA.isHeld('brake')) {
         state.ship.vx *= 0.95;

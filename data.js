@@ -289,6 +289,30 @@
     });
   });
 
+  FA.defineSound('engine', function(actx, dest) {
+    var t = actx.currentTime;
+    var dur = 0.1;
+    // Low rumble
+    var osc = actx.createOscillator();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(55 + Math.random() * 15, t);
+    osc.frequency.linearRampToValueAtTime(45 + Math.random() * 10, t + dur);
+    // Noise texture via detuned square
+    var osc2 = actx.createOscillator();
+    osc2.type = 'square';
+    osc2.frequency.setValueAtTime(38 + Math.random() * 8, t);
+    var g = actx.createGain();
+    g.gain.setValueAtTime(0.06, t);
+    g.gain.linearRampToValueAtTime(0.0, t + dur);
+    var g2 = actx.createGain();
+    g2.gain.setValueAtTime(0.02, t);
+    g2.gain.linearRampToValueAtTime(0.0, t + dur);
+    osc.connect(g); g.connect(dest);
+    osc2.connect(g2); g2.connect(dest);
+    osc.start(t); osc.stop(t + dur);
+    osc2.start(t); osc2.stop(t + dur);
+  });
+
   // === NARRACJA ===
   FA.register('config', 'narrative', {
     startNode: 'awakening',
