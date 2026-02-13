@@ -19,6 +19,10 @@
   FA.bindKey('restart',   ['r']);
   FA.bindKey('choiceYes', ['y']);
   FA.bindKey('choiceNo',  ['n']);
+  FA.bindKey('dock',      ['f']);
+  FA.bindKey('undock',    ['Escape']);
+  FA.bindKey('tabLeft',   ['q']);
+  FA.bindKey('tabRight',  ['e']);
 
   // === INPUT (akcje jednorazowe) ===
   FA.on('input:action', function(data) {
@@ -42,7 +46,79 @@
         return;
       }
     }
+    // Dock
+    if (state.screen === 'playing' && data.action === 'dock' && state.stationDockable) {
+      Ship.dockAtStation(state);
+      return;
+    }
+    // Undock
+    if (state.screen === 'docked' && data.action === 'undock') {
+      Ship.undockFromStation(state);
+      return;
+    }
+    // Tab switch w docked
+    if (state.screen === 'docked') {
+      var tabs = ['editor', 'buy', 'sell'];
+      var ci = tabs.indexOf(state.tradeTab);
+      if (data.action === 'tabLeft' && ci > 0) {
+        state.tradeTab = tabs[ci - 1];
+        state.dragPart = null;
+        state.dragGhost = null;
+        return;
+      }
+      if (data.action === 'tabRight' && ci < tabs.length - 1) {
+        state.tradeTab = tabs[ci + 1];
+        state.dragPart = null;
+        state.dragGhost = null;
+        return;
+      }
+    }
   });
+
+  // === MOUSE EVENTS (native — engine nie ma mousedown/mouseup) ===
+  var canvas = document.getElementById('game');
+  if (canvas) {
+    canvas.addEventListener('mousedown', function(e) {
+      var state = FA.getState();
+      if (state.screen !== 'docked') return;
+      var rect = canvas.getBoundingClientRect();
+      var mx = e.clientX - rect.left;
+      var my = e.clientY - rect.top;
+
+      if (state.tradeTab === 'editor') {
+        Ship.startDrag(state, mx, my);
+      } else if (state.tradeTab === 'buy' && state.buyHitboxes) {
+        for (var i = 0; i < state.buyHitboxes.length; i++) {
+          var hb = state.buyHitboxes[i];
+          if (mx >= hb.x && mx <= hb.x + hb.w && my >= hb.y && my <= hb.y + hb.h) {
+            Ship.buyPart(state, hb.index);
+            break;
+          }
+        }
+      } else if (state.tradeTab === 'sell' && state.sellHitboxes) {
+        for (var j = 0; j < state.sellHitboxes.length; j++) {
+          var sh = state.sellHitboxes[j];
+          if (mx >= sh.x && mx <= sh.x + sh.w && my >= sh.y && my <= sh.y + sh.h) {
+            Ship.sellPart(state, sh.partIndex);
+            break;
+          }
+        }
+      }
+    });
+
+    canvas.addEventListener('mousemove', function(e) {
+      var state = FA.getState();
+      if (state.screen !== 'docked' || !state.dragPart) return;
+      var rect = canvas.getBoundingClientRect();
+      Ship.updateDrag(state, e.clientX - rect.left, e.clientY - rect.top);
+    });
+
+    canvas.addEventListener('mouseup', function(e) {
+      var state = FA.getState();
+      if (state.screen !== 'docked') return;
+      Ship.endDrag(state);
+    });
+  }
 
   // === SCORE ===
   FA.on('game:over', function(data) {
@@ -54,6 +130,15 @@
   // === GAME LOOP ===
   FA.setUpdate(function(dt) {
     var state = FA.getState();
+
+    // Docked: narrative timer only
+    if (state.screen === 'docked') {
+      if (state.narrativeMessage && state.narrativeMessage.life > 0) {
+        state.narrativeMessage.life -= dt;
+      }
+      return;
+    }
+
     if (state.screen !== 'playing') return;
 
     // Player input (real-time: isHeld)
@@ -83,6 +168,14 @@
       // Kamera
       FA.camera.x = state.ship.x - cfg.canvasWidth / 2;
       FA.camera.y = state.ship.y - cfg.canvasHeight / 2;
+
+      // Station proximity
+      if (state.station) {
+        var sDist = Math.hypot(state.ship.x - state.station.x, state.ship.y - state.station.y);
+        state.stationDockable = sDist < cfg.dockRadius;
+      } else {
+        state.stationDockable = false;
+      }
     }
 
     // Enemy AI + fizyka

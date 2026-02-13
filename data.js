@@ -20,7 +20,16 @@
     enemySpawnDistance: 600,
     floatingPartLife: 900,
     pickupRadius: 45,
-    maxEnemies: 6
+    maxEnemies: 6,
+    dockRadius: 80,
+    stationSize: 60,
+    startCredits: 100,
+    sellRatio: 0.5,
+    sectorPriceScale: 0.15
+  });
+
+  FA.register('config', 'tradePrices', {
+    engine: 40, gun: 60, cargo: 30, shield: 80
   });
 
   FA.register('config', 'colors', {
@@ -243,13 +252,51 @@
     osc.connect(g); g.connect(dest); osc.start(); osc.stop(actx.currentTime + 0.5);
   });
 
+  FA.defineSound('dock', function(actx, dest) {
+    var t = actx.currentTime;
+    [400, 600, 800].forEach(function(freq, i) {
+      var osc = actx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, t + i * 0.08);
+      var g = actx.createGain();
+      g.gain.setValueAtTime(0.3, t + i * 0.08);
+      g.gain.exponentialRampToValueAtTime(0.01, t + i * 0.08 + 0.12);
+      osc.connect(g); g.connect(dest); osc.start(t + i * 0.08); osc.stop(t + i * 0.08 + 0.12);
+    });
+  });
+
+  FA.defineSound('trade', function(actx, dest) {
+    var osc = actx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(500, actx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(900, actx.currentTime + 0.08);
+    var g = actx.createGain();
+    g.gain.setValueAtTime(0.4, actx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.01, actx.currentTime + 0.1);
+    osc.connect(g); g.connect(dest); osc.start(); osc.stop(actx.currentTime + 0.1);
+  });
+
+  FA.defineSound('undock', function(actx, dest) {
+    var t = actx.currentTime;
+    [800, 600, 400].forEach(function(freq, i) {
+      var osc = actx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, t + i * 0.08);
+      var g = actx.createGain();
+      g.gain.setValueAtTime(0.3, t + i * 0.08);
+      g.gain.exponentialRampToValueAtTime(0.01, t + i * 0.08 + 0.12);
+      osc.connect(g); g.connect(dest); osc.start(t + i * 0.08); osc.stop(t + i * 0.08 + 0.12);
+    });
+  });
+
   // === NARRACJA ===
   FA.register('config', 'narrative', {
     startNode: 'awakening',
     variables: {
       kills: 0, sector: 1, parts_collected: 0,
       pilots_met: 0, reputation: 0, ship_size: 6,
-      has_ally: false, betrayed: false, knows_truth: false
+      has_ally: false, betrayed: false, knows_truth: false,
+      credits: 100, trades_made: 0, stations_visited: 0
     },
     graph: {
       nodes: [
@@ -280,7 +327,14 @@
         { id: 'final_battle', label: 'Finalna walka', type: 'scene' },
         { id: 'victory_drift', label: 'Wolny dryft', type: 'scene' },
         { id: 'victory_return', label: 'Powrot', type: 'scene' },
-        { id: 'destroyed', label: 'Zniszczony', type: 'scene' }
+        { id: 'destroyed', label: 'Zniszczony', type: 'scene' },
+        { id: 'station_first_dock', label: 'Pierwsza stacja', type: 'scene' },
+        { id: 'station_s1', label: 'Stacja S1', type: 'scene' },
+        { id: 'station_s2', label: 'Stacja S2', type: 'scene' },
+        { id: 'station_s3', label: 'Stacja S3', type: 'scene' },
+        { id: 'station_s4', label: 'Stacja S4', type: 'scene' },
+        { id: 'station_s5', label: 'Stacja S5', type: 'scene' },
+        { id: 'station_s6', label: 'Stacja S6', type: 'scene' }
       ],
       edges: [
         { from: 'awakening', to: 'first_drift' },
@@ -312,7 +366,14 @@
         { from: 'ally_helps', to: 'sector_7' },
         { from: 'sector_7', to: 'final_battle' },
         { from: 'final_battle', to: 'victory_drift' },
-        { from: 'final_battle', to: 'victory_return' }
+        { from: 'final_battle', to: 'victory_return' },
+        { from: 'first_drift', to: 'station_first_dock' },
+        { from: 'station_first_dock', to: 'station_s1' },
+        { from: 'sector_2', to: 'station_s2' },
+        { from: 'sector_3', to: 'station_s3' },
+        { from: 'sector_4', to: 'station_s4' },
+        { from: 'sector_5', to: 'station_s5' },
+        { from: 'sector_6', to: 'station_s6' }
       ]
     }
   });
@@ -346,5 +407,14 @@
   FA.register('narrativeText', 'victory_drift', { text: 'Granica otwarta. Dryfujesz w nieskonczonosc. Wolny.', color: '#88ccff' });
   FA.register('narrativeText', 'victory_return', { text: 'Odwracasz sie. Wracasz. Ktos musi opowiedziec te historie.', color: '#ffcc88' });
   FA.register('narrativeText', 'destroyed', { text: 'Rdzen gasnie. Ciemnosc. Ale kopie dryfuja dalej...', color: '#ff4444' });
+
+  // Stacyjne
+  FA.register('narrativeText', 'station_first_dock', { text: 'Stacja dokujaca. Swiatla migaja. Moze znajdziesz tu cos uzytecznego.', color: '#4ff' });
+  FA.register('narrativeText', 'station_s1', { text: '"Witaj, dryfterze. Strefa Rozproszenia to niebezpieczne miejsce. Moze potrzebujesz czegosc?"', color: '#4ff' });
+  FA.register('narrativeText', 'station_s2', { text: '"Chmura Pylu niszczy silniki. Mam zapasowe. Za rozsadna cene."', color: '#88aacc' });
+  FA.register('narrativeText', 'station_s3', { text: '"Pole Wrakow. Duzo towaru prosto z wrakow. Tanio, ale bez gwarancji."', color: '#aa8866' });
+  FA.register('narrativeText', 'station_s4', { text: '"Pas Asteroidow to strefa wojenna. Tarcze? Dziala? Mam wszystko."', color: '#66aa88' });
+  FA.register('narrativeText', 'station_s5', { text: '"Mgawica Krwi... Malo kto dociera tak daleko. Ceny premium, dryfterze."', color: '#cc6688' });
+  FA.register('narrativeText', 'station_s6', { text: '"Ostatnia stacja przed Granica. Potem juz nic. Zaopatrz sie."', color: '#6666aa' });
 
 })();

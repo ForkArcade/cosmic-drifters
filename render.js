@@ -78,6 +78,186 @@
     if (frameSprite) drawSprite(ctx, frameSprite, sx - 2, sy - 2, s + 4);
   }
 
+  // === DOCK SCREEN HELPERS ===
+
+  function drawShipEditor(ctx, state, cfg, colors, panelY, panelH) {
+    var g = cfg.gridSize;
+    var editorX = cfg.canvasWidth / 2;
+    var editorY = cfg.canvasHeight / 2 - 30;
+
+    // Siatka 7×7
+    var gridHalf = 3;
+    ctx.strokeStyle = '#1a2a3a';
+    ctx.lineWidth = 1;
+    for (var gx = -gridHalf; gx <= gridHalf; gx++) {
+      for (var gy = -gridHalf; gy <= gridHalf; gy++) {
+        ctx.strokeRect(editorX + gx * g - g / 2, editorY + gy * g - g / 2, g, g);
+      }
+    }
+
+    // Rysuj czesci
+    if (state.ship) {
+      for (var i = 0; i < state.ship.parts.length; i++) {
+        // Skip dragged part
+        if (state.dragPart && state.dragPart.index === i) continue;
+        var part = state.ship.parts[i];
+        var px = editorX + part.x;
+        var py = editorY + part.y;
+        var def = FA.lookup('partTypes', part.type);
+        var ch = def ? def.char : '?';
+        var color = getPartColor(part.type, true, true, colors);
+        FA.draw.sprite('player', part.type, px - 10, py - 10, 20, ch, color);
+
+        // HP bar
+        if (part.hp < part.maxHp) {
+          FA.draw.bar(px - 12, py + 12, 24, 3, part.hp / part.maxHp, '#f44', '#400');
+        }
+        // Label
+        FA.draw.text(def ? def.name : part.type, px, py + 20,
+          { color: '#668', size: 9, align: 'center' });
+      }
+
+      // Drag ghost
+      if (state.dragPart && state.dragGhost) {
+        var localX = state.dragGhost.x - editorX;
+        var localY = state.dragGhost.y - editorY;
+        var snapped = Physics.snapToGrid(localX, localY);
+        var ghostX = editorX + snapped.x;
+        var ghostY = editorY + snapped.y;
+        var ghostColor = state.dragValid ? 'rgba(0,255,128,0.4)' : 'rgba(255,64,64,0.4)';
+        ctx.fillStyle = ghostColor;
+        ctx.fillRect(ghostX - g / 2, ghostY - g / 2, g, g);
+        ctx.strokeStyle = state.dragValid ? '#4f8' : '#f44';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(ghostX - g / 2, ghostY - g / 2, g, g);
+      }
+    }
+
+    FA.draw.text('Przeciagnij myszka aby przestawic czesci', cfg.canvasWidth / 2, cfg.canvasHeight - 90,
+      { color: '#446', size: 12, align: 'center' });
+  }
+
+  function drawBuyPanel(ctx, state, cfg, colors, panelY, panelH) {
+    // Ship preview po lewej
+    var previewX = 200;
+    var previewY = panelY + panelH / 2;
+    drawShipPreview(ctx, state, cfg, colors, previewX, previewY);
+
+    // Stock po prawej
+    var listX = cfg.canvasWidth / 2 + 50;
+    var listY = panelY + 20;
+    FA.draw.text('DOSTEPNE CZESCI', listX + 100, listY, { color: '#0ff', size: 16, bold: true, align: 'center' });
+    listY += 30;
+
+    if (!state.station || !state.station.stock || state.station.stock.length === 0) {
+      FA.draw.text('Brak towaru', listX + 100, listY, { color: '#446', size: 14, align: 'center' });
+      return;
+    }
+
+    // Zapisz hitboxy do state
+    state.buyHitboxes = [];
+    for (var i = 0; i < state.station.stock.length; i++) {
+      var item = state.station.stock[i];
+      var iy = listY + i * 50;
+      var canBuy = state.credits >= item.price;
+
+      // Background
+      FA.draw.rect(listX, iy, 200, 42, canBuy ? '#0a1a2a' : '#0a0a14');
+      ctx.strokeStyle = canBuy ? '#1a3a5a' : '#1a1a2a';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(listX, iy, 200, 42);
+
+      // Sprite
+      var def = FA.lookup('partTypes', item.type);
+      var ch = def ? def.char : '?';
+      var color = getPartColor(item.type, true, true, colors);
+      FA.draw.sprite('player', item.type, listX + 8, iy + 11, 20, ch, color);
+
+      // Nazwa + cena
+      FA.draw.text(def ? def.name : item.type, listX + 42, iy + 8,
+        { color: canBuy ? '#cde' : '#445', size: 14 });
+      FA.draw.text(item.price + ' CR', listX + 42, iy + 24,
+        { color: canBuy ? '#ff0' : '#553', size: 12 });
+
+      // Klik button
+      if (canBuy) {
+        FA.draw.rect(listX + 150, iy + 6, 44, 28, '#1a3a2a');
+        FA.draw.text('KUP', listX + 172, iy + 14, { color: '#4f4', size: 12, bold: true, align: 'center' });
+      }
+
+      state.buyHitboxes.push({ x: listX, y: iy, w: 200, h: 42, index: i });
+    }
+  }
+
+  function drawSellPanel(ctx, state, cfg, colors, panelY, panelH) {
+    // Ship preview po lewej
+    var previewX = 200;
+    var previewY = panelY + panelH / 2;
+    drawShipPreview(ctx, state, cfg, colors, previewX, previewY);
+
+    // Parts list po prawej
+    var listX = cfg.canvasWidth / 2 + 50;
+    var listY = panelY + 20;
+    FA.draw.text('TWOJE CZESCI', listX + 100, listY, { color: '#f80', size: 16, bold: true, align: 'center' });
+    listY += 30;
+
+    if (!state.ship) return;
+
+    state.sellHitboxes = [];
+    var sellIdx = 0;
+    var prices = FA.lookup('config', 'tradePrices');
+    for (var i = 0; i < state.ship.parts.length; i++) {
+      var part = state.ship.parts[i];
+      if (part.type === 'core') continue; // Core nie sprzedajemy
+      var iy = listY + sellIdx * 50;
+      var basePrice = prices[part.type] || 30;
+      var sellPrice = Math.round(basePrice * cfg.sellRatio);
+
+      // Background
+      FA.draw.rect(listX, iy, 200, 42, '#1a0a0a');
+      ctx.strokeStyle = '#3a1a1a';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(listX, iy, 200, 42);
+
+      // Sprite
+      var def = FA.lookup('partTypes', part.type);
+      var ch = def ? def.char : '?';
+      var color = getPartColor(part.type, true, true, colors);
+      FA.draw.sprite('player', part.type, listX + 8, iy + 11, 20, ch, color);
+
+      // Nazwa + cena + HP
+      FA.draw.text((def ? def.name : part.type) + ' (' + part.hp + '/' + part.maxHp + ')', listX + 42, iy + 8,
+        { color: '#cde', size: 14 });
+      FA.draw.text('+' + sellPrice + ' CR', listX + 42, iy + 24,
+        { color: '#ff0', size: 12 });
+
+      // Sprzedaj button
+      FA.draw.rect(listX + 140, iy + 6, 54, 28, '#3a1a1a');
+      FA.draw.text('SPRZEDAJ', listX + 167, iy + 14, { color: '#f80', size: 11, bold: true, align: 'center' });
+
+      state.sellHitboxes.push({ x: listX, y: iy, w: 200, h: 42, partIndex: i });
+      sellIdx++;
+    }
+
+    if (sellIdx === 0) {
+      FA.draw.text('Brak czesci do sprzedazy', listX + 100, listY, { color: '#446', size: 14, align: 'center' });
+    }
+  }
+
+  function drawShipPreview(ctx, state, cfg, colors, cx, cy) {
+    if (!state.ship) return;
+    FA.draw.text('Twoj statek', cx, cy - 100, { color: '#688', size: 12, align: 'center' });
+    for (var i = 0; i < state.ship.parts.length; i++) {
+      var part = state.ship.parts[i];
+      var px = cx + part.x;
+      var py = cy + part.y;
+      var def = FA.lookup('partTypes', part.type);
+      var ch = def ? def.char : '?';
+      var color = getPartColor(part.type, true, Physics.isConnected(state.ship.parts, i), colors);
+      FA.draw.sprite('player', part.type, px - 10, py - 10, 20, ch, color);
+    }
+  }
+
   function setupLayers() {
     var cfg = FA.lookup('config', 'game');
     var colors = FA.lookup('config', 'colors');
@@ -101,7 +281,7 @@
         }
       }
 
-      FA.draw.text('WASD — lot | SHIFT — turbo', cfg.canvasWidth / 2, 460, { color: '#aaa', size: 14, align: 'center' });
+      FA.draw.text('WASD — lot | SHIFT — turbo | F — dokuj', cfg.canvasWidth / 2, 460, { color: '#aaa', size: 14, align: 'center' });
       FA.draw.text('SPACJA — strzal | Zbieraj dryfujace czesci', cfg.canvasWidth / 2, 484, { color: '#aaa', size: 14, align: 'center' });
       FA.draw.text('[SPACJA] aby rozpoczac', cfg.canvasWidth / 2, 540, { color: '#fff', size: 20, bold: true, align: 'center' });
     }, 0);
@@ -160,6 +340,64 @@
       FA.draw.text('[R] nowa gra', cfg.canvasWidth / 2, 490, { color: '#fff', size: 18, bold: true, align: 'center' });
     }, 0);
 
+    // === EKRAN DOKU ===
+    FA.addLayer('dockedScreen', function() {
+      var state = FA.getState();
+      if (state.screen !== 'docked') return;
+
+      // Tlo
+      FA.draw.rect(0, 0, cfg.canvasWidth, cfg.canvasHeight, '#050a12');
+
+      // Tytul
+      var stName = state.station && state.station.pilot ? state.station.pilot.name + ' Station' : 'Stacja';
+      FA.draw.text('STACJA DOKUJACA', cfg.canvasWidth / 2, 30, { color: '#0ff', size: 28, bold: true, align: 'center' });
+      FA.draw.text('Sektor ' + state.sector + ' — ' + stName, cfg.canvasWidth / 2, 56, { color: '#688', size: 14, align: 'center' });
+
+      // Kredyty
+      FA.draw.text('CR: ' + state.credits, cfg.canvasWidth / 2, 80, { color: '#ff0', size: 18, bold: true, align: 'center' });
+
+      // Taby
+      var tabs = ['editor', 'buy', 'sell'];
+      var tabLabels = { editor: '[Q] Edytor', buy: 'Kup [E]', sell: 'Sprzedaj' };
+      var tabWidth = 120;
+      var tabStartX = cfg.canvasWidth / 2 - (tabs.length * tabWidth) / 2;
+      for (var t = 0; t < tabs.length; t++) {
+        var tx = tabStartX + t * tabWidth;
+        var isActive = state.tradeTab === tabs[t];
+        FA.draw.rect(tx, 100, tabWidth - 4, 28, isActive ? '#1a3a5a' : '#0a1520');
+        ctx.strokeStyle = isActive ? '#0ff' : '#334';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(tx, 100, tabWidth - 4, 28);
+        FA.draw.text(tabLabels[tabs[t]], tx + tabWidth / 2 - 2, 108,
+          { color: isActive ? '#0ff' : '#668', size: 13, align: 'center' });
+      }
+
+      var panelY = 140;
+      var panelH = cfg.canvasHeight - panelY - 80;
+
+      if (state.tradeTab === 'editor') {
+        drawShipEditor(ctx, state, cfg, colors, panelY, panelH);
+      } else if (state.tradeTab === 'buy') {
+        drawBuyPanel(ctx, state, cfg, colors, panelY, panelH);
+      } else if (state.tradeTab === 'sell') {
+        drawSellPanel(ctx, state, cfg, colors, panelY, panelH);
+      }
+
+      // Narrative message w doku
+      if (state.narrativeMessage && state.narrativeMessage.life > 0) {
+        var alpha = Math.min(1, state.narrativeMessage.life / 1000);
+        FA.draw.withAlpha(alpha, function() {
+          FA.draw.rect(0, cfg.canvasHeight - 70, cfg.canvasWidth, 30, 'rgba(0,0,0,0.7)');
+          FA.draw.text(state.narrativeMessage.text, cfg.canvasWidth / 2, cfg.canvasHeight - 62,
+            { color: state.narrativeMessage.color, size: 14, align: 'center' });
+        });
+      }
+
+      // ESC hint
+      FA.draw.text('[ESC] Oddokuj', cfg.canvasWidth / 2, cfg.canvasHeight - 20,
+        { color: '#688', size: 14, align: 'center' });
+    }, 0);
+
     // === SIATKA TLA ===
     FA.addLayer('grid', function() {
       var state = FA.getState();
@@ -182,6 +420,60 @@
       }
       ctx.stroke();
     }, 1);
+
+    // === STACJA W SWIECIE ===
+    FA.addLayer('station', function() {
+      var state = FA.getState();
+      if (state.screen !== 'playing' || !state.station) return;
+      var st = state.station;
+      var sx = st.x - FA.camera.x;
+      var sy = st.y - FA.camera.y;
+      if (sx < -100 || sx > cfg.canvasWidth + 100 || sy < -100 || sy > cfg.canvasHeight + 100) return;
+
+      st.angle += 0.005; // Powolna rotacja
+
+      ctx.save();
+      ctx.translate(sx, sy);
+      ctx.rotate(st.angle);
+
+      // Glow
+      ctx.shadowColor = '#0ff';
+      ctx.shadowBlur = 15;
+
+      // Hex
+      ctx.strokeStyle = '#0ff';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      var r = cfg.stationSize / 2;
+      for (var i = 0; i < 6; i++) {
+        var a = Math.PI / 3 * i - Math.PI / 6;
+        var hx = Math.cos(a) * r;
+        var hy = Math.sin(a) * r;
+        if (i === 0) ctx.moveTo(hx, hy); else ctx.lineTo(hx, hy);
+      }
+      ctx.closePath();
+      ctx.stroke();
+
+      // Inner hex
+      ctx.strokeStyle = '#088';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      var ri = r * 0.6;
+      for (var j = 0; j < 6; j++) {
+        var ai = Math.PI / 3 * j - Math.PI / 6;
+        var hxi = Math.cos(ai) * ri;
+        var hyi = Math.sin(ai) * ri;
+        if (j === 0) ctx.moveTo(hxi, hyi); else ctx.lineTo(hxi, hyi);
+      }
+      ctx.closePath();
+      ctx.stroke();
+
+      ctx.shadowBlur = 0;
+      ctx.restore();
+
+      // "D" label (nie rotuje)
+      FA.draw.text('D', sx, sy - 5, { color: '#0ff', size: 14, bold: true, align: 'center' });
+    }, 3);
 
     // === DRYFUJACE CZESCI ===
     FA.addLayer('floatingParts', function() {
@@ -270,10 +562,47 @@
       }
     }, 20);
 
+    // === STATION INDICATOR ===
+    FA.addLayer('stationIndicator', function() {
+      var state = FA.getState();
+      if (state.screen !== 'playing' || !state.station || !state.ship) return;
+      var st = state.station;
+      var sx = st.x - FA.camera.x;
+      var sy = st.y - FA.camera.y;
+
+      // Off-screen hex indicator
+      if (sx < 0 || sx > cfg.canvasWidth || sy < 0 || sy > cfg.canvasHeight) {
+        var ccx = cfg.canvasWidth / 2, ccy = cfg.canvasHeight / 2;
+        var sAngle = Math.atan2(sy - ccy, sx - ccx);
+        var ix = FA.clamp(ccx + Math.cos(sAngle) * 300, 30, cfg.canvasWidth - 30);
+        var iy = FA.clamp(ccy + Math.sin(sAngle) * 300, 30, cfg.canvasHeight - 30);
+        ctx.save();
+        ctx.translate(ix, iy);
+        ctx.strokeStyle = '#0ff';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (var h = 0; h < 6; h++) {
+          var ha = Math.PI / 3 * h - Math.PI / 6;
+          var hx = Math.cos(ha) * 8;
+          var hy = Math.sin(ha) * 8;
+          if (h === 0) ctx.moveTo(hx, hy); else ctx.lineTo(hx, hy);
+        }
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // Dock prompt
+      if (state.stationDockable) {
+        FA.draw.text('[F] Dokuj na stacji', cfg.canvasWidth / 2, cfg.canvasHeight / 2 + 60,
+          { color: '#0ff', size: 18, bold: true, align: 'center' });
+      }
+    }, 21);
+
     // === NARRACJA ===
     FA.addLayer('narrative', function() {
       var state = FA.getState();
-      if (state.screen !== 'playing') return;
+      if (state.screen !== 'playing') return; // docked ma wlasna narracje w dockedScreen
       if (!state.narrativeMessage || state.narrativeMessage.life <= 0) return;
       var alpha = Math.min(1, state.narrativeMessage.life / 1000);
       FA.draw.withAlpha(alpha, function() {
@@ -382,7 +711,7 @@
 
       var info = sectorName + ' [' + state.sector + '/7] | '
         + 'Silniki:' + engines + ' Dziala:' + guns + ' Rdzen:' + coreHp + '/' + coreMax
-        + ' | Wrogowie:' + state.enemies.length + ' | Wynik:' + score;
+        + ' | Wrogowie:' + state.enemies.length + ' | CR:' + state.credits + ' | Wynik:' + score;
       FA.draw.text(info, 10, y, { color: colors.text, size: 14 });
 
       // Mini pilot portrait w HUD

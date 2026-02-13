@@ -5,6 +5,8 @@
   var FA = window.FA;
   var cfg = FA.lookup('config', 'game');
 
+  var prices = FA.lookup('config', 'tradePrices');
+
   // Narrative node -> sector mapping
   var SECTOR_NARRATIVES = {
     1: ['awakening', 'first_drift'],
@@ -14,6 +16,12 @@
     5: ['sector_5', 'signal_source', 'the_truth'],
     6: ['sector_6'],
     7: ['sector_7', 'final_battle']
+  };
+
+  // Station narrative per sector
+  var STATION_NARRATIVES = {
+    1: 'station_s1', 2: 'station_s2', 3: 'station_s3',
+    4: 'station_s4', 5: 'station_s5', 6: 'station_s6'
   };
 
   function showNarrative(nodeId) {
@@ -359,8 +367,9 @@
       }
     }
 
-    // Spawn new wave
+    // Spawn new wave + station
     spawnWave(state);
+    spawnStation(state);
     FA.playSound('sector_clear');
   }
 
@@ -413,6 +422,267 @@
     }
   }
 
+  // === STACJE ===
+
+  function spawnStation(state) {
+    if (state.sector >= 7) return; // Brak stacji w ostatnim sektorze
+    var angle = Math.random() * Math.PI * 2;
+    var dist = 200 + Math.random() * 200;
+    var sx = state.ship.x + Math.cos(angle) * dist;
+    var sy = state.ship.y + Math.sin(angle) * dist;
+
+    // Generuj stock: 3-5 losowych czesci
+    var stockCount = 3 + Math.floor(Math.random() * 3);
+    var stock = [];
+    var partTypes = ['engine', 'gun', 'cargo', 'shield'];
+    var priceScale = 1 + state.sector * cfg.sectorPriceScale;
+    for (var i = 0; i < stockCount; i++) {
+      var type = FA.pick(partTypes);
+      var basePrice = prices[type] || 40;
+      stock.push({
+        type: type,
+        price: Math.round(basePrice * priceScale)
+      });
+    }
+
+    state.station = {
+      x: sx, y: sy,
+      stock: stock,
+      angle: 0, // rotacja wizualna
+      pilot: generatePilot()
+    };
+    state.stationDockable = false;
+  }
+
+  function dockAtStation(state) {
+    if (!state.station || !state.stationDockable) return;
+    state.screen = 'docked';
+    state.ship.vx = 0;
+    state.ship.vy = 0;
+    state.ship.angVel = 0;
+    state.tradeTab = 'editor'; // editor | buy | sell
+
+    // Drag state reset
+    state.dragPart = null;
+    state.dragGhost = null;
+    state.dragValid = false;
+
+    FA.playSound('dock');
+
+    // Narrative
+    if (!state.firstDock) {
+      state.firstDock = true;
+      showNarrative('station_first_dock');
+      state.stationsVisited = 1;
+      FA.narrative.setVar('stations_visited', 1, 'Pierwsza stacja');
+    } else {
+      state.stationsVisited = (state.stationsVisited || 0) + 1;
+      FA.narrative.setVar('stations_visited', state.stationsVisited, 'Wizyta na stacji');
+      var stNar = STATION_NARRATIVES[state.sector];
+      if (stNar) showNarrative(stNar);
+    }
+  }
+
+  function undockFromStation(state) {
+    state.screen = 'playing';
+    state.dragPart = null;
+    state.dragGhost = null;
+    FA.playSound('undock');
+  }
+
+  // === HANDEL ===
+
+  function buyPart(state, stockIndex) {
+    if (!state.station) return;
+    var item = state.station.stock[stockIndex];
+    if (!item) return;
+    if (state.credits < item.price) return;
+
+    // Znajdz wolny slot na statku
+    var slot = findFreeAdjacentSlot(state.ship.parts);
+    if (!slot) return;
+
+    state.credits -= item.price;
+    FA.narrative.setVar('credits', state.credits, 'Kupiono czesc');
+    var def = FA.lookup('partTypes', item.type);
+    state.ship.parts.push({
+      x: slot.x, y: slot.y, type: item.type,
+      hp: def ? def.maxHp : 2, maxHp: def ? def.maxHp : 2, lastHit: 0
+    });
+    state.station.stock.splice(stockIndex, 1);
+    state.tradesMade = (state.tradesMade || 0) + 1;
+    FA.narrative.setVar('trades_made', state.tradesMade, 'Transakcja');
+    FA.playSound('trade');
+  }
+
+  function sellPart(state, partIndex) {
+    if (!state.ship) return;
+    var part = state.ship.parts[partIndex];
+    if (!part || part.type === 'core') return;
+
+    var basePrice = prices[part.type] || 30;
+    var sellPrice = Math.round(basePrice * cfg.sellRatio);
+    state.credits += sellPrice;
+    FA.narrative.setVar('credits', state.credits, 'Sprzedano czesc');
+    state.ship.parts.splice(partIndex, 1);
+    state.tradesMade = (state.tradesMade || 0) + 1;
+    FA.narrative.setVar('trades_made', state.tradesMade, 'Transakcja');
+    FA.playSound('trade');
+
+    // Cascade: odczep niepolaczone
+    for (var c = state.ship.parts.length - 1; c >= 0; c--) {
+      if (state.ship.parts[c].type !== 'core' && !Physics.isConnected(state.ship.parts, c)) {
+        state.ship.parts.splice(c, 1);
+      }
+    }
+  }
+
+  function findFreeAdjacentSlot(parts) {
+    // BFS od core — szukaj pierwszego wolnego slotu sąsiadującego z istniejącą częścią
+    var g = cfg.gridSize;
+    var offsets = [
+      {x: 0, y: -g}, {x: 0, y: g}, {x: -g, y: 0}, {x: g, y: 0}
+    ];
+    var occupied = {};
+    for (var i = 0; i < parts.length; i++) {
+      occupied[parts[i].x + ',' + parts[i].y] = true;
+    }
+
+    // BFS through existing parts
+    var visited = {};
+    var queue = [];
+    // Start from core
+    for (var j = 0; j < parts.length; j++) {
+      if (parts[j].type === 'core') {
+        queue.push(j);
+        visited[j] = true;
+        break;
+      }
+    }
+    while (queue.length) {
+      var ci = queue.shift();
+      var cp = parts[ci];
+      // Check adjacent slots
+      for (var k = 0; k < offsets.length; k++) {
+        var nx = cp.x + offsets[k].x;
+        var ny = cp.y + offsets[k].y;
+        var key = nx + ',' + ny;
+        if (!occupied[key]) {
+          return { x: nx, y: ny };
+        }
+      }
+      // Continue BFS
+      for (var m = 0; m < parts.length; m++) {
+        if (!visited[m] && Math.hypot(parts[m].x - cp.x, parts[m].y - cp.y) < cfg.partProximity) {
+          visited[m] = true;
+          queue.push(m);
+        }
+      }
+    }
+    return null;
+  }
+
+  // === DRAG & DROP ===
+
+  function startDrag(state, cx, cy) {
+    if (state.screen !== 'docked' || state.tradeTab !== 'editor') return;
+    // cx, cy to koordynaty canvas
+    var g = cfg.gridSize;
+    // Editor rysuje statek wycentrowany na canvas
+    var editorX = cfg.canvasWidth / 2;
+    var editorY = cfg.canvasHeight / 2 - 30;
+
+    // Znajdz czesc pod kursorem
+    for (var i = 0; i < state.ship.parts.length; i++) {
+      var part = state.ship.parts[i];
+      if (part.type === 'core') continue; // core nie ruszamy
+      var px = editorX + part.x;
+      var py = editorY + part.y;
+      if (Math.abs(cx - px) < g / 2 && Math.abs(cy - py) < g / 2) {
+        state.dragPart = {
+          index: i,
+          originX: part.x,
+          originY: part.y
+        };
+        state.dragGhost = { x: cx, y: cy };
+        state.dragValid = true;
+        return;
+      }
+    }
+  }
+
+  function updateDrag(state, cx, cy) {
+    if (!state.dragPart) return;
+    state.dragGhost = { x: cx, y: cy };
+
+    // Snap do siatki
+    var editorX = cfg.canvasWidth / 2;
+    var editorY = cfg.canvasHeight / 2 - 30;
+    var localX = cx - editorX;
+    var localY = cy - editorY;
+    var snapped = Physics.snapToGrid(localX, localY);
+
+    // Sprawdz czy slot jest wolny
+    var isOccupied = false;
+    for (var i = 0; i < state.ship.parts.length; i++) {
+      if (i === state.dragPart.index) continue;
+      if (state.ship.parts[i].x === snapped.x && state.ship.parts[i].y === snapped.y) {
+        isOccupied = true;
+        break;
+      }
+    }
+    if (isOccupied) {
+      state.dragValid = false;
+      return;
+    }
+
+    // Sprawdz BFS connectivity — symuluj czesc na nowej pozycji
+    var testParts = [];
+    for (var j = 0; j < state.ship.parts.length; j++) {
+      if (j === state.dragPart.index) {
+        testParts.push({ x: snapped.x, y: snapped.y, type: state.ship.parts[j].type });
+      } else {
+        testParts.push({ x: state.ship.parts[j].x, y: state.ship.parts[j].y, type: state.ship.parts[j].type });
+      }
+    }
+    // Sprawdz czy wszystkie non-core czesci sa connected
+    var allConnected = true;
+    for (var k = 0; k < testParts.length; k++) {
+      if (testParts[k].type !== 'core' && !Physics.isConnected(testParts, k)) {
+        allConnected = false;
+        break;
+      }
+    }
+    state.dragValid = allConnected;
+  }
+
+  function endDrag(state) {
+    if (!state.dragPart) return;
+    if (state.dragValid && state.dragGhost) {
+      var editorX = cfg.canvasWidth / 2;
+      var editorY = cfg.canvasHeight / 2 - 30;
+      var localX = state.dragGhost.x - editorX;
+      var localY = state.dragGhost.y - editorY;
+      var snapped = Physics.snapToGrid(localX, localY);
+
+      // Sprawdz ponownie czy slot wolny
+      var isOccupied = false;
+      for (var i = 0; i < state.ship.parts.length; i++) {
+        if (i === state.dragPart.index) continue;
+        if (state.ship.parts[i].x === snapped.x && state.ship.parts[i].y === snapped.y) {
+          isOccupied = true;
+          break;
+        }
+      }
+      if (!isOccupied) {
+        state.ship.parts[state.dragPart.index].x = snapped.x;
+        state.ship.parts[state.dragPart.index].y = snapped.y;
+      }
+    }
+    state.dragPart = null;
+    state.dragGhost = null;
+  }
+
   // === EKRANY ===
 
   function startScreen() {
@@ -441,7 +711,17 @@
       lastKilledPilot: null,
       pilotShowTimer: 0,
       playerPilot: playerPilot,
-      waveCleared: false
+      waveCleared: false,
+      credits: cfg.startCredits,
+      station: null,
+      stationDockable: false,
+      tradeTab: 'editor',
+      dragPart: null,
+      dragGhost: null,
+      dragValid: false,
+      stationsVisited: 0,
+      tradesMade: 0,
+      firstDock: false
     });
     var narCfg = FA.lookup('config', 'narrative');
     if (narCfg) FA.narrative.init(narCfg);
@@ -452,7 +732,9 @@
     state.screen = 'playing';
     state.ship = createShip('player_default', 0, 0);
     state.playerPilot = generatePilot(Date.now());
+    state.credits = cfg.startCredits;
     spawnWave(state);
+    spawnStation(state);
     showNarrative('awakening');
     // Queue first_drift after awakening fades
     state.narrativeQueue = ['first_drift'];
@@ -465,7 +747,8 @@
                   (state.partsCollected * scoring.partCollectedMultiplier) +
                   (state.damageDealt * scoring.damageMultiplier) +
                   Math.floor(state.survivalTime * scoring.survivalPerSecond) +
-                  ((state.sector - 1) * scoring.sectorBonus);
+                  ((state.sector - 1) * scoring.sectorBonus) +
+                  ((state.tradesMade || 0) * 10);
 
     if (state.sector >= 7 && state.enemies.length === 0) {
       // Victory!
@@ -498,7 +781,15 @@
     startScreen: startScreen,
     beginGame: beginGame,
     gameOver: gameOver,
-    showNarrative: showNarrative
+    showNarrative: showNarrative,
+    spawnStation: spawnStation,
+    dockAtStation: dockAtStation,
+    undockFromStation: undockFromStation,
+    buyPart: buyPart,
+    sellPart: sellPart,
+    startDrag: startDrag,
+    updateDrag: updateDrag,
+    endDrag: endDrag
   };
 
 })();
