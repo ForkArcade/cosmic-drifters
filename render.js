@@ -4,152 +4,78 @@
   'use strict';
   var FA = window.FA;
 
-  // === RYSOWANIE PORTRETU PILOTA ===
+  // === RYSOWANIE PORTRETU PILOTA (sprite-based) ===
+
+  // Mapowanie wlasciwosci pilota na nazwy sprite'ow
+  var SKIN_MAP = { '#e8c4a0': 'face_light', '#c49870': 'face_light', '#d4a574': 'face_light',
+                   '#c68c5a': 'face_medium', '#a37452': 'face_medium',
+                   '#8d5c3a': 'face_dark', '#6b4226': 'face_dark' };
+  var HELM_MAP = { '#2a3a5a': 'helm_blue', '#1a3a4a': 'helm_blue',
+                   '#2a4a3a': 'helm_green', '#3a2a4a': 'helm_dark',
+                   '#4a3a2a': 'helm_dark', '#5a2a2a': 'helm_dark', '#3a3a3a': 'helm_dark' };
+  var VISOR_MAP = { '#0ff': 'visor_cyan', '#4ff': 'visor_cyan', '#08f': 'visor_cyan',
+                    '#f0f': 'visor_magenta', '#f44': 'visor_magenta',
+                    '#ff0': 'visor_orange', '#f80': 'visor_orange', '#0f0': 'visor_cyan' };
+  var IMPLANT_MAP = { '#f44': 'implant_red', '#ff0': 'implant_red', '#f0f': 'implant_red',
+                      '#0ff': 'implant_cyan', '#4f4': 'implant_cyan' };
+  var MOHAWK_MAP = { '#ff0': 'mohawk_yellow', '#f80': 'mohawk_yellow', '#fff': 'mohawk_yellow',
+                     '#0ff': 'mohawk_cyan', '#444': 'mohawk_cyan',
+                     '#f0f': 'mohawk_magenta' };
 
   function drawPilotPortrait(ctx, pilot, x, y, size) {
     if (!pilot) return;
     var s = size || 64;
     var hs = s / 2;
+    var sx = x - hs;
+    var sy = y - hs;
 
-    ctx.save();
-    ctx.translate(x, y);
-
-    // Tlo portretu
+    // Tlo
     ctx.fillStyle = '#0a1520';
-    ctx.fillRect(-hs - 4, -hs - 4, s + 8, s + 8);
-    ctx.strokeStyle = '#1a3a5a';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(-hs - 4, -hs - 4, s + 8, s + 8);
+    ctx.fillRect(sx - 2, sy - 2, s + 4, s + 4);
 
-    // Glowa / twarz
-    ctx.fillStyle = pilot.skinTone;
-    var faceW = s * 0.55, faceH = s * 0.65;
-    ctx.beginPath();
-    ctx.ellipse(0, s * 0.05, faceW / 2, faceH / 2, 0, 0, Math.PI * 2);
-    ctx.fill();
+    // Baza twarzy
+    var faceSprite = getSprite('ui', SKIN_MAP[pilot.skinTone] || 'face_medium');
+    if (faceSprite) drawSprite(ctx, faceSprite, sx, sy, s);
+
+    // Mohawk (przed helmem — helm przykryje)
+    if (pilot.hasMohawk && !pilot.helmColor) {
+      var mohawkSprite = getSprite('ui', MOHAWK_MAP[pilot.hairColor] || 'mohawk_yellow');
+      if (mohawkSprite) drawSprite(ctx, mohawkSprite, sx, sy, s);
+    }
 
     // Helm
     if (pilot.helmColor) {
-      ctx.fillStyle = pilot.helmColor;
-      ctx.beginPath();
-      ctx.ellipse(0, -s * 0.12, faceW / 2 + 3, faceH * 0.35, 0, Math.PI, Math.PI * 2);
-      ctx.fill();
-      // Krawedz helmu
-      ctx.strokeStyle = '#ffffff33';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.ellipse(0, -s * 0.12, faceW / 2 + 3, faceH * 0.35, 0, Math.PI, Math.PI * 2);
-      ctx.stroke();
+      var helmSprite = getSprite('ui', HELM_MAP[pilot.helmColor] || 'helm_dark');
+      if (helmSprite) drawSprite(ctx, helmSprite, sx, sy, s);
     }
 
-    // Mohawk (tylko bez helmu)
-    if (pilot.hasMohawk && !pilot.helmColor) {
-      ctx.fillStyle = pilot.hairColor;
-      for (var m = 0; m < 5; m++) {
-        var mx = -6 + m * 3;
-        var mh = 8 + Math.abs(2 - m) * 3;
-        ctx.fillRect(mx, -hs + 2, 3, mh);
-      }
-    }
-
-    // Oczy
-    var eyeY = s * 0.0;
-    var eyeSpacing = s * 0.12;
-    // Bialka
-    ctx.fillStyle = '#ddd';
-    ctx.beginPath();
-    ctx.ellipse(-eyeSpacing, eyeY, 4, 3, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.ellipse(eyeSpacing, eyeY, 4, 3, 0, 0, Math.PI * 2);
-    ctx.fill();
-    // Zrenice
-    ctx.fillStyle = pilot.eyeColor;
-    ctx.beginPath();
-    ctx.arc(-eyeSpacing, eyeY, 2, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(eyeSpacing, eyeY, 2, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Cyborg implant — zastepuje jedno oko
-    if (pilot.isCyborg && pilot.implantColor) {
-      ctx.fillStyle = pilot.implantColor;
-      ctx.shadowColor = pilot.implantColor;
-      ctx.shadowBlur = 6;
-      ctx.beginPath();
-      ctx.arc(eyeSpacing, eyeY, 4, 0, Math.PI * 2);
-      ctx.fill();
-      // Linie implantowe
-      ctx.strokeStyle = pilot.implantColor;
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(eyeSpacing + 4, eyeY);
-      ctx.lineTo(eyeSpacing + 10, eyeY - 3);
-      ctx.moveTo(eyeSpacing + 4, eyeY + 2);
-      ctx.lineTo(eyeSpacing + 8, eyeY + 6);
-      ctx.stroke();
-      ctx.shadowBlur = 0;
-    }
-
-    // Visor / gogle
+    // Visor
     if (pilot.visorColor) {
-      ctx.fillStyle = pilot.visorColor + '66';
-      ctx.strokeStyle = pilot.visorColor;
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(-faceW / 2 + 2, eyeY - 4);
-      ctx.lineTo(faceW / 2 - 2, eyeY - 4);
-      ctx.lineTo(faceW / 2 - 2, eyeY + 4);
-      ctx.lineTo(-faceW / 2 + 2, eyeY + 4);
-      ctx.closePath();
-      ctx.fill();
-      ctx.stroke();
+      var visorSprite = getSprite('ui', VISOR_MAP[pilot.visorColor] || 'visor_cyan');
+      if (visorSprite) drawSprite(ctx, visorSprite, sx, sy, s);
     }
 
     // Blizna
     if (pilot.hasScar) {
-      ctx.strokeStyle = '#ff668866';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(-eyeSpacing - 5, eyeY - 8);
-      ctx.lineTo(eyeSpacing - 3, eyeY + 12);
-      ctx.stroke();
+      var scarSprite = getSprite('ui', 'scar');
+      if (scarSprite) drawSprite(ctx, scarSprite, sx, sy, s);
     }
 
-    // Usta
-    ctx.fillStyle = '#00000044';
-    ctx.fillRect(-4, s * 0.18, 8, 2);
+    // Implant cyborga
+    if (pilot.isCyborg && pilot.implantColor) {
+      var implantSprite = getSprite('ui', IMPLANT_MAP[pilot.implantColor] || 'implant_red');
+      if (implantSprite) drawSprite(ctx, implantSprite, sx, sy, s);
+    }
 
-    // Breather (oddechowy)
+    // Breather
     if (pilot.hasBreather) {
-      ctx.fillStyle = '#333';
-      ctx.fillRect(-8, s * 0.14, 16, 8);
-      ctx.fillStyle = '#1a1a1a';
-      ctx.fillRect(-6, s * 0.16, 3, 4);
-      ctx.fillRect(-1, s * 0.16, 3, 4);
-      ctx.fillRect(4, s * 0.16, 3, 4);
-      // Rurki
-      ctx.strokeStyle = '#555';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(-8, s * 0.18);
-      ctx.lineTo(-14, s * 0.25);
-      ctx.moveTo(8, s * 0.18);
-      ctx.lineTo(14, s * 0.25);
-      ctx.stroke();
+      var breatherSprite = getSprite('ui', 'breather');
+      if (breatherSprite) drawSprite(ctx, breatherSprite, sx, sy, s);
     }
 
-    // Ramka cyborga
-    if (pilot.isCyborg) {
-      ctx.strokeStyle = pilot.implantColor || '#f44';
-      ctx.lineWidth = 1;
-      ctx.setLineDash([3, 3]);
-      ctx.strokeRect(-hs - 4, -hs - 4, s + 8, s + 8);
-      ctx.setLineDash([]);
-    }
-
-    ctx.restore();
+    // Ramka
+    var frameSprite = getSprite('ui', pilot.isCyborg ? 'frame_cyborg' : 'frame_normal');
+    if (frameSprite) drawSprite(ctx, frameSprite, sx - 2, sy - 2, s + 4);
   }
 
   function setupLayers() {

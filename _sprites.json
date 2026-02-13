@@ -4,121 +4,121 @@
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#005566",
         "C": "#00ffff",
-        "c": "#008888",
         "w": "#ffffff",
-        "b": "#005566"
+        "c": "#008888"
       },
       "pixels": [
-        "..cCCc..",
-        ".cCwwCc.",
-        "cCwwwwCc",
-        "CCwwwwCC",
-        "CCwwwwCC",
-        "cCwwwwCc",
-        ".cCwwCc.",
-        "..cCCc.."
+        "ffffffff",
+        "f.cCCc.f",
+        "f.CwwC.f",
+        "fcCwwCcf",
+        "fcCwwCcf",
+        "f.CwwC.f",
+        "f.cCCc.f",
+        "ffffffff"
       ]
     },
     "engine": {
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#115511",
         "G": "#44ff44",
         "g": "#228822",
-        "d": "#116611",
-        "n": "#0a440a"
+        "d": "#116611"
       },
       "pixels": [
-        "..gGGg..",
-        ".gGGGGg.",
-        ".GGGGGG.",
-        "gGGddGGg",
-        "gGddddGg",
-        ".gdddng.",
-        ".gddddg.",
-        "..gnng.."
+        "ffffffff",
+        "f..GG..f",
+        "f.gGGg.f",
+        "f.GGGG.f",
+        "f.GddG.f",
+        "f.gddg.f",
+        "f..dd..f",
+        "ffffffff"
       ]
     },
     "engineActive": {
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#115511",
         "G": "#44ff44",
         "g": "#228822",
-        "f": "#00ffff",
-        "F": "#88ffff",
+        "c": "#00ffff",
         "w": "#ffffff"
       },
       "pixels": [
-        "..gGGg..",
-        ".gGGGGg.",
-        ".GGGGGG.",
-        "gGGffGGg",
-        "gGfFFfGg",
-        ".gfwwfg.",
-        "..fFFf..",
-        "...fw..."
+        "ffffffff",
+        "f..GG..f",
+        "f.gGGg.f",
+        "f.GGGG.f",
+        "f.GccG.f",
+        "f.cwwc.f",
+        "f..cw..f",
+        "ffffffff"
       ]
     },
     "gun": {
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#442244",
         "M": "#ff44ff",
         "m": "#882288",
-        "p": "#cc22cc",
         "w": "#ffffff"
       },
       "pixels": [
-        "...ww...",
-        "...MM...",
-        "..MMMM..",
-        ".mMppMm.",
-        ".mMppMm.",
-        ".mMMMMm.",
-        "..mMMm..",
-        "..mmmm.."
+        "ffffffff",
+        "f..ww..f",
+        "f..MM..f",
+        "f.MMMM.f",
+        "f.mMMm.f",
+        "f.mMMm.f",
+        "f..mm..f",
+        "ffffffff"
       ]
     },
     "cargo": {
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#444411",
         "Y": "#eeff44",
         "y": "#888822",
-        "d": "#666611",
         "w": "#ffffff"
       },
       "pixels": [
-        ".yYYYYy.",
-        "yYYwwYYy",
-        "YYYwwYYY",
-        "YYYYYYYd",
-        "YYYYYYYd",
-        "YYYYYYdd",
-        "yYYYYYd.",
-        ".yyyyyd."
+        "ffffffff",
+        "f.yYYy.f",
+        "f.YwwY.f",
+        "f.YYYY.f",
+        "f.YYYY.f",
+        "f.yYYy.f",
+        "f..yy..f",
+        "ffffffff"
       ]
     },
     "shield": {
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#112255",
         "B": "#4488ff",
         "b": "#2244aa",
-        "w": "#88bbff",
-        "g": "#6699ff"
+        "w": "#88bbff"
       },
       "pixels": [
-        "..bBBb..",
-        ".bBwwBb.",
-        "bBwggwBb",
-        "BwggggwB",
-        "BwggggwB",
-        "bBwggwBb",
-        ".bBwwBb.",
-        "..bBBb.."
+        "ffffffff",
+        "f.bBBb.f",
+        "f.BwwB.f",
+        "fbBwwBbf",
+        "fbBwwBbf",
+        "f.BwwB.f",
+        "f.bBBb.f",
+        "ffffffff"
       ]
     }
   },
@@ -127,98 +127,99 @@
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#553311",
         "O": "#ff8844",
         "o": "#884422",
-        "w": "#ffcc88",
-        "r": "#663311"
+        "w": "#ffcc88"
       },
       "pixels": [
-        "..oOOo..",
-        ".oOwwOo.",
-        "oOwwwwOo",
-        "OOwwwwOO",
-        "OOwwwwOO",
-        "oOwwwwOo",
-        ".oOwwOo.",
-        "..oOOo.."
+        "ffffffff",
+        "f.oOOo.f",
+        "f.OwwO.f",
+        "foOwwOof",
+        "foOwwOof",
+        "f.OwwO.f",
+        "f.oOOo.f",
+        "ffffffff"
       ]
     },
     "engine": {
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#224411",
         "G": "#88ff44",
         "g": "#448822",
-        "d": "#336611",
-        "n": "#224a0a"
+        "d": "#336611"
       },
       "pixels": [
-        "..gGGg..",
-        ".gGGGGg.",
-        ".GGGGGG.",
-        "gGGddGGg",
-        "gGddddGg",
-        ".gdddng.",
-        ".gddddg.",
-        "..gnng.."
+        "ffffffff",
+        "f..GG..f",
+        "f.gGGg.f",
+        "f.GGGG.f",
+        "f.GddG.f",
+        "f.gddg.f",
+        "f..dd..f",
+        "ffffffff"
       ]
     },
     "gun": {
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#441111",
         "R": "#ff4444",
         "r": "#882222",
-        "p": "#cc2222",
         "w": "#ffaaaa"
       },
       "pixels": [
-        "...ww...",
-        "...RR...",
-        "..RRRR..",
-        ".rRppRr.",
-        ".rRppRr.",
-        ".rRRRRr.",
-        "..rRRr..",
-        "..rrrr.."
+        "ffffffff",
+        "f..ww..f",
+        "f..RR..f",
+        "f.RRRR.f",
+        "f.rRRr.f",
+        "f.rRRr.f",
+        "f..rr..f",
+        "ffffffff"
       ]
     },
     "cargo": {
       "w": 8,
       "h": 8,
       "palette": {
-        "Y": "#eeff44",
-        "y": "#888822",
-        "d": "#666611"
+        "f": "#444411",
+        "Y": "#ccdd44",
+        "y": "#666622"
       },
       "pixels": [
-        ".yYYYYy.",
-        "yYYYYYYy",
-        "YYYYYYYY",
-        "YYYYYYYd",
-        "YYYYYYYd",
-        "YYYYYYdd",
-        "yYYYYYd.",
-        ".yyyyyd."
+        "ffffffff",
+        "f.yYYy.f",
+        "f.YYYY.f",
+        "f.YYYY.f",
+        "f.YYYY.f",
+        "f.yYYy.f",
+        "f..yy..f",
+        "ffffffff"
       ]
     },
     "shield": {
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#112255",
         "B": "#4488ff",
         "b": "#2244aa",
         "g": "#6699ff"
       },
       "pixels": [
-        "..bBBb..",
-        ".bBBBBb.",
-        "bBBggBBb",
-        "BBggggBB",
-        "BBggggBB",
-        "bBBggBBb",
-        ".bBBBBb.",
-        "..bBBb.."
+        "ffffffff",
+        "f.bBBb.f",
+        "f.BggB.f",
+        "fbBggBbf",
+        "fbBggBbf",
+        "f.BggB.f",
+        "f.bBBb.f",
+        "ffffffff"
       ]
     }
   },
@@ -248,8 +249,7 @@
       "palette": {
         "R": "#ff4400",
         "Y": "#ffaa00",
-        "W": "#ffffff",
-        "r": "#882200"
+        "W": "#ffffff"
       },
       "pixels": [
         "..R..Y..",
@@ -268,8 +268,7 @@
       "palette": {
         "C": "#00ffff",
         "c": "#008888",
-        "w": "#ffffff",
-        "b": "#004444"
+        "w": "#ffffff"
       },
       "pixels": [
         "..ww....",
@@ -278,7 +277,7 @@
         "cCwwCc..",
         ".CccC...",
         "..cc....",
-        "..b.....",
+        "........",
         "........"
       ]
     },
@@ -307,80 +306,436 @@
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#223333",
         "C": "#668888",
         "c": "#445555",
         "w": "#889999"
       },
       "pixels": [
-        "..cCCc..",
-        ".cCwwCc.",
-        "cCwwwwCc",
-        "CCwwwwCC",
-        "CCwwwwCC",
-        "cCwwwwCc",
-        ".cCwwCc.",
-        "..cCCc.."
+        "ffffffff",
+        "f.cCCc.f",
+        "f.CwwC.f",
+        "fcCwwCcf",
+        "fcCwwCcf",
+        "f.CwwC.f",
+        "f.cCCc.f",
+        "ffffffff"
       ]
     },
     "floatingEngine": {
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#223322",
         "G": "#668866",
         "g": "#445544",
         "d": "#334433"
       },
       "pixels": [
-        "..gGGg..",
-        ".gGGGGg.",
-        ".GGGGGG.",
-        "gGGddGGg",
-        "gGddddGg",
-        ".gdddGg.",
-        ".gddddg.",
-        "..gddg.."
+        "ffffffff",
+        "f..GG..f",
+        "f.gGGg.f",
+        "f.GGGG.f",
+        "f.GddG.f",
+        "f.gddg.f",
+        "f..dd..f",
+        "ffffffff"
       ]
     },
     "floatingGun": {
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#332233",
         "M": "#886688",
         "m": "#554455",
         "w": "#998899"
       },
       "pixels": [
-        "...ww...",
-        "...MM...",
-        "..MMMM..",
-        ".mMMMMm.",
-        ".mMMMMm.",
-        ".mMMMMm.",
-        "..mMMm..",
-        "..mmmm.."
+        "ffffffff",
+        "f..ww..f",
+        "f..MM..f",
+        "f.MMMM.f",
+        "f.mMMm.f",
+        "f.mMMm.f",
+        "f..mm..f",
+        "ffffffff"
       ]
     },
     "floatingCargo": {
       "w": 8,
       "h": 8,
       "palette": {
+        "f": "#333322",
         "Y": "#888866",
-        "y": "#555544",
-        "d": "#444433"
+        "y": "#555544"
       },
       "pixels": [
-        ".yYYYYy.",
-        "yYYYYYYy",
-        "YYYYYYYY",
-        "YYYYYYYd",
-        "YYYYYYYd",
-        "YYYYYYdd",
-        "yYYYYYd.",
-        ".yyyyyd."
+        "ffffffff",
+        "f.yYYy.f",
+        "f.YYYY.f",
+        "f.YYYY.f",
+        "f.YYYY.f",
+        "f.yYYy.f",
+        "f..yy..f",
+        "ffffffff"
       ]
     }
   },
   "ui": {
+    "face_light": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "s": "#e8c4a0",
+        "d": "#c49870",
+        "e": "#4ef0f0",
+        "w": "#ffffff",
+        "m": "#884444"
+      },
+      "pixels": [
+        "..ssss..",
+        ".ssssss.",
+        ".sewwes.",
+        ".ssssss.",
+        ".s.mm.s.",
+        ".ssssss.",
+        "..dddd..",
+        "..dssd.."
+      ]
+    },
+    "face_medium": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "s": "#c68c5a",
+        "d": "#a06830",
+        "e": "#4ef0f0",
+        "w": "#ffffff",
+        "m": "#663333"
+      },
+      "pixels": [
+        "..ssss..",
+        ".ssssss.",
+        ".sewwes.",
+        ".ssssss.",
+        ".s.mm.s.",
+        ".ssssss.",
+        "..dddd..",
+        "..dssd.."
+      ]
+    },
+    "face_dark": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "s": "#8d5c3a",
+        "d": "#6b4226",
+        "e": "#4ef0f0",
+        "w": "#ffffff",
+        "m": "#442222"
+      },
+      "pixels": [
+        "..ssss..",
+        ".ssssss.",
+        ".sewwes.",
+        ".ssssss.",
+        ".s.mm.s.",
+        ".ssssss.",
+        "..dddd..",
+        "..dssd.."
+      ]
+    },
+    "helm_blue": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "h": "#2a3a5a",
+        "H": "#3a5a8a",
+        "g": "#4a6a9a"
+      },
+      "pixels": [
+        ".hHHHHh.",
+        "hHHggHHh",
+        "h......h",
+        "h......h",
+        "........",
+        "........",
+        "........",
+        "........"
+      ]
+    },
+    "helm_green": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "h": "#2a4a3a",
+        "H": "#3a6a4a",
+        "g": "#4a8a5a"
+      },
+      "pixels": [
+        ".hHHHHh.",
+        "hHHggHHh",
+        "h......h",
+        "h......h",
+        "........",
+        "........",
+        "........",
+        "........"
+      ]
+    },
+    "helm_dark": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "h": "#3a3a3a",
+        "H": "#555555",
+        "g": "#666666"
+      },
+      "pixels": [
+        ".hHHHHh.",
+        "hHHggHHh",
+        "h......h",
+        "h......h",
+        "........",
+        "........",
+        "........",
+        "........"
+      ]
+    },
+    "visor_cyan": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "v": "#00ffff",
+        "V": "#88ffff"
+      },
+      "pixels": [
+        "........",
+        "........",
+        ".vVVVVv.",
+        "........",
+        "........",
+        "........",
+        "........",
+        "........"
+      ]
+    },
+    "visor_magenta": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "v": "#ff44ff",
+        "V": "#ff88ff"
+      },
+      "pixels": [
+        "........",
+        "........",
+        ".vVVVVv.",
+        "........",
+        "........",
+        "........",
+        "........",
+        "........"
+      ]
+    },
+    "visor_orange": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "v": "#ff8800",
+        "V": "#ffaa44"
+      },
+      "pixels": [
+        "........",
+        "........",
+        ".vVVVVv.",
+        "........",
+        "........",
+        "........",
+        "........",
+        "........"
+      ]
+    },
+    "implant_red": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "i": "#ff4444",
+        "I": "#ff8888",
+        "w": "#ffffff"
+      },
+      "pixels": [
+        "........",
+        "........",
+        "....iIi.",
+        ".....Iw.",
+        "........",
+        "........",
+        "........",
+        "........"
+      ]
+    },
+    "implant_cyan": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "i": "#00ffff",
+        "I": "#88ffff",
+        "w": "#ffffff"
+      },
+      "pixels": [
+        "........",
+        "........",
+        "....iIi.",
+        ".....Iw.",
+        "........",
+        "........",
+        "........",
+        "........"
+      ]
+    },
+    "scar": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "x": "#ff6688"
+      },
+      "pixels": [
+        "........",
+        "..x.....",
+        "...x....",
+        "...x....",
+        "....x...",
+        "....x...",
+        "........",
+        "........"
+      ]
+    },
+    "breather": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "b": "#333333",
+        "B": "#555555",
+        "p": "#222222"
+      },
+      "pixels": [
+        "........",
+        "........",
+        "........",
+        "........",
+        ".bBBBBb.",
+        ".bpbpbb.",
+        "b......b",
+        "........"
+      ]
+    },
+    "mohawk_yellow": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "M": "#ffff00",
+        "m": "#ccaa00"
+      },
+      "pixels": [
+        "..mMm...",
+        "..MMM...",
+        "........",
+        "........",
+        "........",
+        "........",
+        "........",
+        "........"
+      ]
+    },
+    "mohawk_cyan": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "M": "#00ffff",
+        "m": "#008888"
+      },
+      "pixels": [
+        "..mMm...",
+        "..MMM...",
+        "........",
+        "........",
+        "........",
+        "........",
+        "........",
+        "........"
+      ]
+    },
+    "mohawk_magenta": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "M": "#ff44ff",
+        "m": "#882288"
+      },
+      "pixels": [
+        "..mMm...",
+        "..MMM...",
+        "........",
+        "........",
+        "........",
+        "........",
+        "........",
+        "........"
+      ]
+    },
+    "frame_cyborg": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "r": "#ff4444"
+      },
+      "pixels": [
+        "rr.rr.rr",
+        "........",
+        ".......r",
+        "........",
+        "........",
+        "r.......",
+        "........",
+        "rr.rr.rr"
+      ]
+    },
+    "frame_normal": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "r": "#1a3a5a"
+      },
+      "pixels": [
+        "rrrrrrrr",
+        "r......r",
+        "r......r",
+        "r......r",
+        "r......r",
+        "r......r",
+        "r......r",
+        "rrrrrrrr"
+      ]
+    },
+    "gridSlot": {
+      "w": 8,
+      "h": 8,
+      "palette": {
+        "g": "#1a2a3a"
+      },
+      "pixels": [
+        "gggggggg",
+        "g......g",
+        "g......g",
+        "g......g",
+        "g......g",
+        "g......g",
+        "g......g",
+        "gggggggg"
+      ]
+    },
     "indicator": {
       "w": 8,
       "h": 8,
@@ -398,24 +753,6 @@
         "...wR...",
         "........",
         "........"
-      ]
-    },
-    "gridSlot": {
-      "w": 8,
-      "h": 8,
-      "palette": {
-        "g": "#1a2a3a",
-        "d": "#0a1520"
-      },
-      "pixels": [
-        "gggggggg",
-        "g......g",
-        "g......g",
-        "g......g",
-        "g......g",
-        "g......g",
-        "g......g",
-        "gggggggg"
       ]
     }
   }
