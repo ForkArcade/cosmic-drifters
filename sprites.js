@@ -12,15 +12,21 @@ var SPRITE_DEFS = {
         "w": "#ffffff",
         "c": "#008888"
       },
-      "pixels": [
-        "ffffffff",
-        "f.cCCc.f",
-        "f.CwwC.f",
-        "fcCwwCcf",
-        "fcCwwCcf",
-        "f.CwwC.f",
-        "f.cCCc.f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.cCCc.f",
+          "f.CwwC.f",
+          "fcCwwCcf",
+          "fcCwwCcf",
+          "f.CwwC.f",
+          "f.cCCc.f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "engine": {
@@ -32,15 +38,21 @@ var SPRITE_DEFS = {
         "g": "#228822",
         "d": "#116611"
       },
-      "pixels": [
-        "ffffffff",
-        "f..GG..f",
-        "f.gGGg.f",
-        "f.GGGG.f",
-        "f.GddG.f",
-        "f.gddg.f",
-        "f..dd..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..GG..f",
+          "f.gGGg.f",
+          "f.GGGG.f",
+          "f.GddG.f",
+          "f.gddg.f",
+          "f..dd..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "engineActive": {
@@ -53,15 +65,21 @@ var SPRITE_DEFS = {
         "c": "#00ffff",
         "w": "#ffffff"
       },
-      "pixels": [
-        "ffffffff",
-        "f..GG..f",
-        "f.gGGg.f",
-        "f.GGGG.f",
-        "f.GccG.f",
-        "f.cwwc.f",
-        "f..cw..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..GG..f",
+          "f.gGGg.f",
+          "f.GGGG.f",
+          "f.GccG.f",
+          "f.cwwc.f",
+          "f..cw..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "gun": {
@@ -73,15 +91,21 @@ var SPRITE_DEFS = {
         "m": "#882288",
         "w": "#ffffff"
       },
-      "pixels": [
-        "ffffffff",
-        "f..ww..f",
-        "f..MM..f",
-        "f.MMMM.f",
-        "f.mMMm.f",
-        "f.mMMm.f",
-        "f..mm..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..ww..f",
+          "f..MM..f",
+          "f.MMMM.f",
+          "f.mMMm.f",
+          "f.mMMm.f",
+          "f..mm..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "cargo": {
@@ -93,15 +117,21 @@ var SPRITE_DEFS = {
         "y": "#888822",
         "w": "#ffffff"
       },
-      "pixels": [
-        "ffffffff",
-        "f.yYYy.f",
-        "f.YwwY.f",
-        "f.YYYY.f",
-        "f.YYYY.f",
-        "f.yYYy.f",
-        "f..yy..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.yYYy.f",
+          "f.YwwY.f",
+          "f.YYYY.f",
+          "f.YYYY.f",
+          "f.yYYy.f",
+          "f..yy..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "shield": {
@@ -113,15 +143,21 @@ var SPRITE_DEFS = {
         "b": "#2244aa",
         "w": "#88bbff"
       },
-      "pixels": [
-        "ffffffff",
-        "f.bBBb.f",
-        "f.BwwB.f",
-        "fbBwwBbf",
-        "fbBwwBbf",
-        "f.BwwB.f",
-        "f.bBBb.f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.bBBb.f",
+          "f.BwwB.f",
+          "fbBwwBbf",
+          "fbBwwBbf",
+          "f.BwwB.f",
+          "f.bBBb.f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     }
   },
@@ -135,15 +171,21 @@ var SPRITE_DEFS = {
         "o": "#884422",
         "w": "#ffcc88"
       },
-      "pixels": [
-        "ffffffff",
-        "f.oOOo.f",
-        "f.OwwO.f",
-        "foOwwOof",
-        "foOwwOof",
-        "f.OwwO.f",
-        "f.oOOo.f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.oOOo.f",
+          "f.OwwO.f",
+          "foOwwOof",
+          "foOwwOof",
+          "f.OwwO.f",
+          "f.oOOo.f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "engine": {
@@ -155,15 +197,21 @@ var SPRITE_DEFS = {
         "g": "#448822",
         "d": "#336611"
       },
-      "pixels": [
-        "ffffffff",
-        "f..GG..f",
-        "f.gGGg.f",
-        "f.GGGG.f",
-        "f.GddG.f",
-        "f.gddg.f",
-        "f..dd..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..GG..f",
+          "f.gGGg.f",
+          "f.GGGG.f",
+          "f.GddG.f",
+          "f.gddg.f",
+          "f..dd..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "gun": {
@@ -175,15 +223,21 @@ var SPRITE_DEFS = {
         "r": "#882222",
         "w": "#ffaaaa"
       },
-      "pixels": [
-        "ffffffff",
-        "f..ww..f",
-        "f..RR..f",
-        "f.RRRR.f",
-        "f.rRRr.f",
-        "f.rRRr.f",
-        "f..rr..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..ww..f",
+          "f..RR..f",
+          "f.RRRR.f",
+          "f.rRRr.f",
+          "f.rRRr.f",
+          "f..rr..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "cargo": {
@@ -194,15 +248,21 @@ var SPRITE_DEFS = {
         "Y": "#ccdd44",
         "y": "#666622"
       },
-      "pixels": [
-        "ffffffff",
-        "f.yYYy.f",
-        "f.YYYY.f",
-        "f.YYYY.f",
-        "f.YYYY.f",
-        "f.yYYy.f",
-        "f..yy..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.yYYy.f",
+          "f.YYYY.f",
+          "f.YYYY.f",
+          "f.YYYY.f",
+          "f.yYYy.f",
+          "f..yy..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "shield": {
@@ -214,15 +274,21 @@ var SPRITE_DEFS = {
         "b": "#2244aa",
         "g": "#6699ff"
       },
-      "pixels": [
-        "ffffffff",
-        "f.bBBb.f",
-        "f.BggB.f",
-        "fbBggBbf",
-        "fbBggBbf",
-        "f.BggB.f",
-        "f.bBBb.f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.bBBb.f",
+          "f.BggB.f",
+          "fbBggBbf",
+          "fbBggBbf",
+          "f.BggB.f",
+          "f.bBBb.f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     }
   },
@@ -235,15 +301,21 @@ var SPRITE_DEFS = {
         "c": "#008888",
         "w": "#ffffff"
       },
-      "pixels": [
-        "...w....",
-        "...C....",
-        "..CCC...",
-        "...C....",
-        "...c....",
-        "...c....",
-        "........",
-        "........"
+      "frames": [
+        [
+          "...w....",
+          "...C....",
+          "..CCC...",
+          "...C....",
+          "...c....",
+          "...c....",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "explosion": {
@@ -254,15 +326,21 @@ var SPRITE_DEFS = {
         "Y": "#ffaa00",
         "W": "#ffffff"
       },
-      "pixels": [
-        "..R..Y..",
-        ".RYYWYR.",
-        "R.YWWY.R",
-        ".YWWWWY.",
-        ".YWWWWY.",
-        "R.YWWY.R",
-        ".RYYWYR.",
-        "..Y..R.."
+      "frames": [
+        [
+          "..R..Y..",
+          ".RYYWYR.",
+          "R.YWWY.R",
+          ".YWWWWY.",
+          ".YWWWWY.",
+          "R.YWWY.R",
+          ".RYYWYR.",
+          "..Y..R.."
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "flame": {
@@ -273,15 +351,21 @@ var SPRITE_DEFS = {
         "c": "#008888",
         "w": "#ffffff"
       },
-      "pixels": [
-        "..ww....",
-        ".cCCc...",
-        ".CwwC...",
-        "cCwwCc..",
-        ".CccC...",
-        "..cc....",
-        "........",
-        "........"
+      "frames": [
+        [
+          "..ww....",
+          ".cCCc...",
+          ".CwwC...",
+          "cCwwCc..",
+          ".CccC...",
+          "..cc....",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "sparks": {
@@ -292,15 +376,21 @@ var SPRITE_DEFS = {
         "W": "#ffffff",
         "y": "#aa8800"
       },
-      "pixels": [
-        "Y.......",
-        "..W....Y",
-        "........",
-        "...Y....",
-        ".W....y.",
-        "........",
-        "....W...",
-        ".y.....Y"
+      "frames": [
+        [
+          "Y.......",
+          "..W....Y",
+          "........",
+          "...Y....",
+          ".W....y.",
+          "........",
+          "....W...",
+          ".y.....Y"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     }
   },
@@ -314,15 +404,21 @@ var SPRITE_DEFS = {
         "c": "#445555",
         "w": "#889999"
       },
-      "pixels": [
-        "ffffffff",
-        "f.cCCc.f",
-        "f.CwwC.f",
-        "fcCwwCcf",
-        "fcCwwCcf",
-        "f.CwwC.f",
-        "f.cCCc.f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.cCCc.f",
+          "f.CwwC.f",
+          "fcCwwCcf",
+          "fcCwwCcf",
+          "f.CwwC.f",
+          "f.cCCc.f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "floatingEngine": {
@@ -334,15 +430,21 @@ var SPRITE_DEFS = {
         "g": "#445544",
         "d": "#334433"
       },
-      "pixels": [
-        "ffffffff",
-        "f..GG..f",
-        "f.gGGg.f",
-        "f.GGGG.f",
-        "f.GddG.f",
-        "f.gddg.f",
-        "f..dd..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..GG..f",
+          "f.gGGg.f",
+          "f.GGGG.f",
+          "f.GddG.f",
+          "f.gddg.f",
+          "f..dd..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "floatingGun": {
@@ -354,15 +456,21 @@ var SPRITE_DEFS = {
         "m": "#554455",
         "w": "#998899"
       },
-      "pixels": [
-        "ffffffff",
-        "f..ww..f",
-        "f..MM..f",
-        "f.MMMM.f",
-        "f.mMMm.f",
-        "f.mMMm.f",
-        "f..mm..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..ww..f",
+          "f..MM..f",
+          "f.MMMM.f",
+          "f.mMMm.f",
+          "f.mMMm.f",
+          "f..mm..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "floatingCargo": {
@@ -373,15 +481,21 @@ var SPRITE_DEFS = {
         "Y": "#888866",
         "y": "#555544"
       },
-      "pixels": [
-        "ffffffff",
-        "f.yYYy.f",
-        "f.YYYY.f",
-        "f.YYYY.f",
-        "f.YYYY.f",
-        "f.yYYy.f",
-        "f..yy..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.yYYy.f",
+          "f.YYYY.f",
+          "f.YYYY.f",
+          "f.YYYY.f",
+          "f.yYYy.f",
+          "f..yy..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     }
   },
@@ -396,15 +510,21 @@ var SPRITE_DEFS = {
         "w": "#ffffff",
         "m": "#884444"
       },
-      "pixels": [
-        "..ssss..",
-        ".ssssss.",
-        ".sewwes.",
-        ".ssssss.",
-        ".s.mm.s.",
-        ".ssssss.",
-        "..dddd..",
-        "..dssd.."
+      "frames": [
+        [
+          "..ssss..",
+          ".ssssss.",
+          ".sewwes.",
+          ".ssssss.",
+          ".s.mm.s.",
+          ".ssssss.",
+          "..dddd..",
+          "..dssd.."
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "face_medium": {
@@ -417,15 +537,21 @@ var SPRITE_DEFS = {
         "w": "#ffffff",
         "m": "#663333"
       },
-      "pixels": [
-        "..ssss..",
-        ".ssssss.",
-        ".sewwes.",
-        ".ssssss.",
-        ".s.mm.s.",
-        ".ssssss.",
-        "..dddd..",
-        "..dssd.."
+      "frames": [
+        [
+          "..ssss..",
+          ".ssssss.",
+          ".sewwes.",
+          ".ssssss.",
+          ".s.mm.s.",
+          ".ssssss.",
+          "..dddd..",
+          "..dssd.."
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "face_dark": {
@@ -438,15 +564,21 @@ var SPRITE_DEFS = {
         "w": "#ffffff",
         "m": "#442222"
       },
-      "pixels": [
-        "..ssss..",
-        ".ssssss.",
-        ".sewwes.",
-        ".ssssss.",
-        ".s.mm.s.",
-        ".ssssss.",
-        "..dddd..",
-        "..dssd.."
+      "frames": [
+        [
+          "..ssss..",
+          ".ssssss.",
+          ".sewwes.",
+          ".ssssss.",
+          ".s.mm.s.",
+          ".ssssss.",
+          "..dddd..",
+          "..dssd.."
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "helm_blue": {
@@ -457,15 +589,21 @@ var SPRITE_DEFS = {
         "H": "#3a5a8a",
         "g": "#4a6a9a"
       },
-      "pixels": [
-        ".hHHHHh.",
-        "hHHggHHh",
-        "h......h",
-        "h......h",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          ".hHHHHh.",
+          "hHHggHHh",
+          "h......h",
+          "h......h",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "helm_green": {
@@ -476,15 +614,21 @@ var SPRITE_DEFS = {
         "H": "#3a6a4a",
         "g": "#4a8a5a"
       },
-      "pixels": [
-        ".hHHHHh.",
-        "hHHggHHh",
-        "h......h",
-        "h......h",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          ".hHHHHh.",
+          "hHHggHHh",
+          "h......h",
+          "h......h",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "helm_dark": {
@@ -495,15 +639,21 @@ var SPRITE_DEFS = {
         "H": "#555555",
         "g": "#666666"
       },
-      "pixels": [
-        ".hHHHHh.",
-        "hHHggHHh",
-        "h......h",
-        "h......h",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          ".hHHHHh.",
+          "hHHggHHh",
+          "h......h",
+          "h......h",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "visor_cyan": {
@@ -513,15 +663,21 @@ var SPRITE_DEFS = {
         "v": "#00ffff",
         "V": "#88ffff"
       },
-      "pixels": [
-        "........",
-        "........",
-        ".vVVVVv.",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "........",
+          ".vVVVVv.",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "visor_magenta": {
@@ -531,15 +687,21 @@ var SPRITE_DEFS = {
         "v": "#ff44ff",
         "V": "#ff88ff"
       },
-      "pixels": [
-        "........",
-        "........",
-        ".vVVVVv.",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "........",
+          ".vVVVVv.",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "visor_orange": {
@@ -549,15 +711,21 @@ var SPRITE_DEFS = {
         "v": "#ff8800",
         "V": "#ffaa44"
       },
-      "pixels": [
-        "........",
-        "........",
-        ".vVVVVv.",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "........",
+          ".vVVVVv.",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "implant_red": {
@@ -568,15 +736,21 @@ var SPRITE_DEFS = {
         "I": "#ff8888",
         "w": "#ffffff"
       },
-      "pixels": [
-        "........",
-        "........",
-        "....iIi.",
-        ".....Iw.",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "........",
+          "....iIi.",
+          ".....Iw.",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "implant_cyan": {
@@ -587,15 +761,21 @@ var SPRITE_DEFS = {
         "I": "#88ffff",
         "w": "#ffffff"
       },
-      "pixels": [
-        "........",
-        "........",
-        "....iIi.",
-        ".....Iw.",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "........",
+          "....iIi.",
+          ".....Iw.",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "scar": {
@@ -604,15 +784,21 @@ var SPRITE_DEFS = {
       "palette": {
         "x": "#ff6688"
       },
-      "pixels": [
-        "........",
-        "..x.....",
-        "...x....",
-        "...x....",
-        "....x...",
-        "....x...",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "..x.....",
+          "...x....",
+          "...x....",
+          "....x...",
+          "....x...",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "breather": {
@@ -623,15 +809,21 @@ var SPRITE_DEFS = {
         "B": "#555555",
         "p": "#222222"
       },
-      "pixels": [
-        "........",
-        "........",
-        "........",
-        "........",
-        ".bBBBBb.",
-        ".bpbpbb.",
-        "b......b",
-        "........"
+      "frames": [
+        [
+          "........",
+          "........",
+          "........",
+          "........",
+          ".bBBBBb.",
+          ".bpbpbb.",
+          "b......b",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "mohawk_yellow": {
@@ -641,15 +833,21 @@ var SPRITE_DEFS = {
         "M": "#ffff00",
         "m": "#ccaa00"
       },
-      "pixels": [
-        "..mMm...",
-        "..MMM...",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "..mMm...",
+          "..MMM...",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "mohawk_cyan": {
@@ -659,15 +857,21 @@ var SPRITE_DEFS = {
         "M": "#00ffff",
         "m": "#008888"
       },
-      "pixels": [
-        "..mMm...",
-        "..MMM...",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "..mMm...",
+          "..MMM...",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "mohawk_magenta": {
@@ -677,15 +881,21 @@ var SPRITE_DEFS = {
         "M": "#ff44ff",
         "m": "#882288"
       },
-      "pixels": [
-        "..mMm...",
-        "..MMM...",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "..mMm...",
+          "..MMM...",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "frame_cyborg": {
@@ -694,15 +904,21 @@ var SPRITE_DEFS = {
       "palette": {
         "r": "#ff4444"
       },
-      "pixels": [
-        "rr.rr.rr",
-        "........",
-        ".......r",
-        "........",
-        "........",
-        "r.......",
-        "........",
-        "rr.rr.rr"
+      "frames": [
+        [
+          "rr.rr.rr",
+          "........",
+          ".......r",
+          "........",
+          "........",
+          "r.......",
+          "........",
+          "rr.rr.rr"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "frame_normal": {
@@ -711,15 +927,21 @@ var SPRITE_DEFS = {
       "palette": {
         "r": "#1a3a5a"
       },
-      "pixels": [
-        "rrrrrrrr",
-        "r......r",
-        "r......r",
-        "r......r",
-        "r......r",
-        "r......r",
-        "r......r",
-        "rrrrrrrr"
+      "frames": [
+        [
+          "rrrrrrrr",
+          "r......r",
+          "r......r",
+          "r......r",
+          "r......r",
+          "r......r",
+          "r......r",
+          "rrrrrrrr"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "gridSlot": {
@@ -728,15 +950,21 @@ var SPRITE_DEFS = {
       "palette": {
         "g": "#1a2a3a"
       },
-      "pixels": [
-        "gggggggg",
-        "g......g",
-        "g......g",
-        "g......g",
-        "g......g",
-        "g......g",
-        "g......g",
-        "gggggggg"
+      "frames": [
+        [
+          "gggggggg",
+          "g......g",
+          "g......g",
+          "g......g",
+          "g......g",
+          "g......g",
+          "g......g",
+          "gggggggg"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "indicator": {
@@ -747,33 +975,43 @@ var SPRITE_DEFS = {
         "r": "#884422",
         "w": "#ffcc88"
       },
-      "pixels": [
-        "........",
-        "...wR...",
-        "..wRRR..",
-        ".wRRRRR.",
-        "..wRRR..",
-        "...wR...",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "...wR...",
+          "..wRRR..",
+          ".wRRRRR.",
+          "..wRRR..",
+          "...wR...",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     }
   }
 }
 
-function drawSprite(ctx, spriteDef, x, y, size) {
+function drawSprite(ctx, spriteDef, x, y, size, frame) {
   if (!spriteDef) return false
+  frame = frame || 0
+  var pixels = spriteDef.frames[frame % spriteDef.frames.length]
   var pw = size / spriteDef.w
   var ph = size / spriteDef.h
+  var ox = spriteDef.origin[0] * pw
+  var oy = spriteDef.origin[1] * ph
   for (var row = 0; row < spriteDef.h; row++) {
-    var line = spriteDef.pixels[row]
+    var line = pixels[row]
     for (var col = 0; col < spriteDef.w; col++) {
       var ch = line[col]
       if (ch === ".") continue
       var color = spriteDef.palette[ch]
       if (!color) continue
       ctx.fillStyle = color
-      ctx.fillRect(x + col * pw, y + row * ph, Math.ceil(pw), Math.ceil(ph))
+      ctx.fillRect(x - ox + col * pw, y - oy + row * ph, Math.ceil(pw), Math.ceil(ph))
     }
   }
   return true
@@ -781,4 +1019,8 @@ function drawSprite(ctx, spriteDef, x, y, size) {
 
 function getSprite(category, name) {
   return SPRITE_DEFS[category] && SPRITE_DEFS[category][name] || null
+}
+
+function spriteFrames(spriteDef) {
+  return spriteDef ? spriteDef.frames.length : 0
 }

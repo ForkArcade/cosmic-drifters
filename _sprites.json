@@ -9,15 +9,21 @@
         "w": "#ffffff",
         "c": "#008888"
       },
-      "pixels": [
-        "ffffffff",
-        "f.cCCc.f",
-        "f.CwwC.f",
-        "fcCwwCcf",
-        "fcCwwCcf",
-        "f.CwwC.f",
-        "f.cCCc.f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.cCCc.f",
+          "f.CwwC.f",
+          "fcCwwCcf",
+          "fcCwwCcf",
+          "f.CwwC.f",
+          "f.cCCc.f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "engine": {
@@ -29,15 +35,21 @@
         "g": "#228822",
         "d": "#116611"
       },
-      "pixels": [
-        "ffffffff",
-        "f..GG..f",
-        "f.gGGg.f",
-        "f.GGGG.f",
-        "f.GddG.f",
-        "f.gddg.f",
-        "f..dd..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..GG..f",
+          "f.gGGg.f",
+          "f.GGGG.f",
+          "f.GddG.f",
+          "f.gddg.f",
+          "f..dd..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "engineActive": {
@@ -50,15 +62,21 @@
         "c": "#00ffff",
         "w": "#ffffff"
       },
-      "pixels": [
-        "ffffffff",
-        "f..GG..f",
-        "f.gGGg.f",
-        "f.GGGG.f",
-        "f.GccG.f",
-        "f.cwwc.f",
-        "f..cw..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..GG..f",
+          "f.gGGg.f",
+          "f.GGGG.f",
+          "f.GccG.f",
+          "f.cwwc.f",
+          "f..cw..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "gun": {
@@ -70,15 +88,21 @@
         "m": "#882288",
         "w": "#ffffff"
       },
-      "pixels": [
-        "ffffffff",
-        "f..ww..f",
-        "f..MM..f",
-        "f.MMMM.f",
-        "f.mMMm.f",
-        "f.mMMm.f",
-        "f..mm..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..ww..f",
+          "f..MM..f",
+          "f.MMMM.f",
+          "f.mMMm.f",
+          "f.mMMm.f",
+          "f..mm..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "cargo": {
@@ -90,15 +114,21 @@
         "y": "#888822",
         "w": "#ffffff"
       },
-      "pixels": [
-        "ffffffff",
-        "f.yYYy.f",
-        "f.YwwY.f",
-        "f.YYYY.f",
-        "f.YYYY.f",
-        "f.yYYy.f",
-        "f..yy..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.yYYy.f",
+          "f.YwwY.f",
+          "f.YYYY.f",
+          "f.YYYY.f",
+          "f.yYYy.f",
+          "f..yy..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "shield": {
@@ -110,15 +140,21 @@
         "b": "#2244aa",
         "w": "#88bbff"
       },
-      "pixels": [
-        "ffffffff",
-        "f.bBBb.f",
-        "f.BwwB.f",
-        "fbBwwBbf",
-        "fbBwwBbf",
-        "f.BwwB.f",
-        "f.bBBb.f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.bBBb.f",
+          "f.BwwB.f",
+          "fbBwwBbf",
+          "fbBwwBbf",
+          "f.BwwB.f",
+          "f.bBBb.f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     }
   },
@@ -132,15 +168,21 @@
         "o": "#884422",
         "w": "#ffcc88"
       },
-      "pixels": [
-        "ffffffff",
-        "f.oOOo.f",
-        "f.OwwO.f",
-        "foOwwOof",
-        "foOwwOof",
-        "f.OwwO.f",
-        "f.oOOo.f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.oOOo.f",
+          "f.OwwO.f",
+          "foOwwOof",
+          "foOwwOof",
+          "f.OwwO.f",
+          "f.oOOo.f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "engine": {
@@ -152,15 +194,21 @@
         "g": "#448822",
         "d": "#336611"
       },
-      "pixels": [
-        "ffffffff",
-        "f..GG..f",
-        "f.gGGg.f",
-        "f.GGGG.f",
-        "f.GddG.f",
-        "f.gddg.f",
-        "f..dd..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..GG..f",
+          "f.gGGg.f",
+          "f.GGGG.f",
+          "f.GddG.f",
+          "f.gddg.f",
+          "f..dd..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "gun": {
@@ -172,15 +220,21 @@
         "r": "#882222",
         "w": "#ffaaaa"
       },
-      "pixels": [
-        "ffffffff",
-        "f..ww..f",
-        "f..RR..f",
-        "f.RRRR.f",
-        "f.rRRr.f",
-        "f.rRRr.f",
-        "f..rr..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..ww..f",
+          "f..RR..f",
+          "f.RRRR.f",
+          "f.rRRr.f",
+          "f.rRRr.f",
+          "f..rr..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "cargo": {
@@ -191,15 +245,21 @@
         "Y": "#ccdd44",
         "y": "#666622"
       },
-      "pixels": [
-        "ffffffff",
-        "f.yYYy.f",
-        "f.YYYY.f",
-        "f.YYYY.f",
-        "f.YYYY.f",
-        "f.yYYy.f",
-        "f..yy..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.yYYy.f",
+          "f.YYYY.f",
+          "f.YYYY.f",
+          "f.YYYY.f",
+          "f.yYYy.f",
+          "f..yy..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "shield": {
@@ -211,15 +271,21 @@
         "b": "#2244aa",
         "g": "#6699ff"
       },
-      "pixels": [
-        "ffffffff",
-        "f.bBBb.f",
-        "f.BggB.f",
-        "fbBggBbf",
-        "fbBggBbf",
-        "f.BggB.f",
-        "f.bBBb.f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.bBBb.f",
+          "f.BggB.f",
+          "fbBggBbf",
+          "fbBggBbf",
+          "f.BggB.f",
+          "f.bBBb.f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     }
   },
@@ -232,15 +298,21 @@
         "c": "#008888",
         "w": "#ffffff"
       },
-      "pixels": [
-        "...w....",
-        "...C....",
-        "..CCC...",
-        "...C....",
-        "...c....",
-        "...c....",
-        "........",
-        "........"
+      "frames": [
+        [
+          "...w....",
+          "...C....",
+          "..CCC...",
+          "...C....",
+          "...c....",
+          "...c....",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "explosion": {
@@ -251,15 +323,21 @@
         "Y": "#ffaa00",
         "W": "#ffffff"
       },
-      "pixels": [
-        "..R..Y..",
-        ".RYYWYR.",
-        "R.YWWY.R",
-        ".YWWWWY.",
-        ".YWWWWY.",
-        "R.YWWY.R",
-        ".RYYWYR.",
-        "..Y..R.."
+      "frames": [
+        [
+          "..R..Y..",
+          ".RYYWYR.",
+          "R.YWWY.R",
+          ".YWWWWY.",
+          ".YWWWWY.",
+          "R.YWWY.R",
+          ".RYYWYR.",
+          "..Y..R.."
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "flame": {
@@ -270,15 +348,21 @@
         "c": "#008888",
         "w": "#ffffff"
       },
-      "pixels": [
-        "..ww....",
-        ".cCCc...",
-        ".CwwC...",
-        "cCwwCc..",
-        ".CccC...",
-        "..cc....",
-        "........",
-        "........"
+      "frames": [
+        [
+          "..ww....",
+          ".cCCc...",
+          ".CwwC...",
+          "cCwwCc..",
+          ".CccC...",
+          "..cc....",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "sparks": {
@@ -289,15 +373,21 @@
         "W": "#ffffff",
         "y": "#aa8800"
       },
-      "pixels": [
-        "Y.......",
-        "..W....Y",
-        "........",
-        "...Y....",
-        ".W....y.",
-        "........",
-        "....W...",
-        ".y.....Y"
+      "frames": [
+        [
+          "Y.......",
+          "..W....Y",
+          "........",
+          "...Y....",
+          ".W....y.",
+          "........",
+          "....W...",
+          ".y.....Y"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     }
   },
@@ -311,15 +401,21 @@
         "c": "#445555",
         "w": "#889999"
       },
-      "pixels": [
-        "ffffffff",
-        "f.cCCc.f",
-        "f.CwwC.f",
-        "fcCwwCcf",
-        "fcCwwCcf",
-        "f.CwwC.f",
-        "f.cCCc.f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.cCCc.f",
+          "f.CwwC.f",
+          "fcCwwCcf",
+          "fcCwwCcf",
+          "f.CwwC.f",
+          "f.cCCc.f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "floatingEngine": {
@@ -331,15 +427,21 @@
         "g": "#445544",
         "d": "#334433"
       },
-      "pixels": [
-        "ffffffff",
-        "f..GG..f",
-        "f.gGGg.f",
-        "f.GGGG.f",
-        "f.GddG.f",
-        "f.gddg.f",
-        "f..dd..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..GG..f",
+          "f.gGGg.f",
+          "f.GGGG.f",
+          "f.GddG.f",
+          "f.gddg.f",
+          "f..dd..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "floatingGun": {
@@ -351,15 +453,21 @@
         "m": "#554455",
         "w": "#998899"
       },
-      "pixels": [
-        "ffffffff",
-        "f..ww..f",
-        "f..MM..f",
-        "f.MMMM.f",
-        "f.mMMm.f",
-        "f.mMMm.f",
-        "f..mm..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f..ww..f",
+          "f..MM..f",
+          "f.MMMM.f",
+          "f.mMMm.f",
+          "f.mMMm.f",
+          "f..mm..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "floatingCargo": {
@@ -370,15 +478,21 @@
         "Y": "#888866",
         "y": "#555544"
       },
-      "pixels": [
-        "ffffffff",
-        "f.yYYy.f",
-        "f.YYYY.f",
-        "f.YYYY.f",
-        "f.YYYY.f",
-        "f.yYYy.f",
-        "f..yy..f",
-        "ffffffff"
+      "frames": [
+        [
+          "ffffffff",
+          "f.yYYy.f",
+          "f.YYYY.f",
+          "f.YYYY.f",
+          "f.YYYY.f",
+          "f.yYYy.f",
+          "f..yy..f",
+          "ffffffff"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     }
   },
@@ -393,15 +507,21 @@
         "w": "#ffffff",
         "m": "#884444"
       },
-      "pixels": [
-        "..ssss..",
-        ".ssssss.",
-        ".sewwes.",
-        ".ssssss.",
-        ".s.mm.s.",
-        ".ssssss.",
-        "..dddd..",
-        "..dssd.."
+      "frames": [
+        [
+          "..ssss..",
+          ".ssssss.",
+          ".sewwes.",
+          ".ssssss.",
+          ".s.mm.s.",
+          ".ssssss.",
+          "..dddd..",
+          "..dssd.."
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "face_medium": {
@@ -414,15 +534,21 @@
         "w": "#ffffff",
         "m": "#663333"
       },
-      "pixels": [
-        "..ssss..",
-        ".ssssss.",
-        ".sewwes.",
-        ".ssssss.",
-        ".s.mm.s.",
-        ".ssssss.",
-        "..dddd..",
-        "..dssd.."
+      "frames": [
+        [
+          "..ssss..",
+          ".ssssss.",
+          ".sewwes.",
+          ".ssssss.",
+          ".s.mm.s.",
+          ".ssssss.",
+          "..dddd..",
+          "..dssd.."
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "face_dark": {
@@ -435,15 +561,21 @@
         "w": "#ffffff",
         "m": "#442222"
       },
-      "pixels": [
-        "..ssss..",
-        ".ssssss.",
-        ".sewwes.",
-        ".ssssss.",
-        ".s.mm.s.",
-        ".ssssss.",
-        "..dddd..",
-        "..dssd.."
+      "frames": [
+        [
+          "..ssss..",
+          ".ssssss.",
+          ".sewwes.",
+          ".ssssss.",
+          ".s.mm.s.",
+          ".ssssss.",
+          "..dddd..",
+          "..dssd.."
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "helm_blue": {
@@ -454,15 +586,21 @@
         "H": "#3a5a8a",
         "g": "#4a6a9a"
       },
-      "pixels": [
-        ".hHHHHh.",
-        "hHHggHHh",
-        "h......h",
-        "h......h",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          ".hHHHHh.",
+          "hHHggHHh",
+          "h......h",
+          "h......h",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "helm_green": {
@@ -473,15 +611,21 @@
         "H": "#3a6a4a",
         "g": "#4a8a5a"
       },
-      "pixels": [
-        ".hHHHHh.",
-        "hHHggHHh",
-        "h......h",
-        "h......h",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          ".hHHHHh.",
+          "hHHggHHh",
+          "h......h",
+          "h......h",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "helm_dark": {
@@ -492,15 +636,21 @@
         "H": "#555555",
         "g": "#666666"
       },
-      "pixels": [
-        ".hHHHHh.",
-        "hHHggHHh",
-        "h......h",
-        "h......h",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          ".hHHHHh.",
+          "hHHggHHh",
+          "h......h",
+          "h......h",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "visor_cyan": {
@@ -510,15 +660,21 @@
         "v": "#00ffff",
         "V": "#88ffff"
       },
-      "pixels": [
-        "........",
-        "........",
-        ".vVVVVv.",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "........",
+          ".vVVVVv.",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "visor_magenta": {
@@ -528,15 +684,21 @@
         "v": "#ff44ff",
         "V": "#ff88ff"
       },
-      "pixels": [
-        "........",
-        "........",
-        ".vVVVVv.",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "........",
+          ".vVVVVv.",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "visor_orange": {
@@ -546,15 +708,21 @@
         "v": "#ff8800",
         "V": "#ffaa44"
       },
-      "pixels": [
-        "........",
-        "........",
-        ".vVVVVv.",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "........",
+          ".vVVVVv.",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "implant_red": {
@@ -565,15 +733,21 @@
         "I": "#ff8888",
         "w": "#ffffff"
       },
-      "pixels": [
-        "........",
-        "........",
-        "....iIi.",
-        ".....Iw.",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "........",
+          "....iIi.",
+          ".....Iw.",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "implant_cyan": {
@@ -584,15 +758,21 @@
         "I": "#88ffff",
         "w": "#ffffff"
       },
-      "pixels": [
-        "........",
-        "........",
-        "....iIi.",
-        ".....Iw.",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "........",
+          "....iIi.",
+          ".....Iw.",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "scar": {
@@ -601,15 +781,21 @@
       "palette": {
         "x": "#ff6688"
       },
-      "pixels": [
-        "........",
-        "..x.....",
-        "...x....",
-        "...x....",
-        "....x...",
-        "....x...",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "..x.....",
+          "...x....",
+          "...x....",
+          "....x...",
+          "....x...",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "breather": {
@@ -620,15 +806,21 @@
         "B": "#555555",
         "p": "#222222"
       },
-      "pixels": [
-        "........",
-        "........",
-        "........",
-        "........",
-        ".bBBBBb.",
-        ".bpbpbb.",
-        "b......b",
-        "........"
+      "frames": [
+        [
+          "........",
+          "........",
+          "........",
+          "........",
+          ".bBBBBb.",
+          ".bpbpbb.",
+          "b......b",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "mohawk_yellow": {
@@ -638,15 +830,21 @@
         "M": "#ffff00",
         "m": "#ccaa00"
       },
-      "pixels": [
-        "..mMm...",
-        "..MMM...",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "..mMm...",
+          "..MMM...",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "mohawk_cyan": {
@@ -656,15 +854,21 @@
         "M": "#00ffff",
         "m": "#008888"
       },
-      "pixels": [
-        "..mMm...",
-        "..MMM...",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "..mMm...",
+          "..MMM...",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "mohawk_magenta": {
@@ -674,15 +878,21 @@
         "M": "#ff44ff",
         "m": "#882288"
       },
-      "pixels": [
-        "..mMm...",
-        "..MMM...",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........",
-        "........"
+      "frames": [
+        [
+          "..mMm...",
+          "..MMM...",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "frame_cyborg": {
@@ -691,15 +901,21 @@
       "palette": {
         "r": "#ff4444"
       },
-      "pixels": [
-        "rr.rr.rr",
-        "........",
-        ".......r",
-        "........",
-        "........",
-        "r.......",
-        "........",
-        "rr.rr.rr"
+      "frames": [
+        [
+          "rr.rr.rr",
+          "........",
+          ".......r",
+          "........",
+          "........",
+          "r.......",
+          "........",
+          "rr.rr.rr"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "frame_normal": {
@@ -708,15 +924,21 @@
       "palette": {
         "r": "#1a3a5a"
       },
-      "pixels": [
-        "rrrrrrrr",
-        "r......r",
-        "r......r",
-        "r......r",
-        "r......r",
-        "r......r",
-        "r......r",
-        "rrrrrrrr"
+      "frames": [
+        [
+          "rrrrrrrr",
+          "r......r",
+          "r......r",
+          "r......r",
+          "r......r",
+          "r......r",
+          "r......r",
+          "rrrrrrrr"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "gridSlot": {
@@ -725,15 +947,21 @@
       "palette": {
         "g": "#1a2a3a"
       },
-      "pixels": [
-        "gggggggg",
-        "g......g",
-        "g......g",
-        "g......g",
-        "g......g",
-        "g......g",
-        "g......g",
-        "gggggggg"
+      "frames": [
+        [
+          "gggggggg",
+          "g......g",
+          "g......g",
+          "g......g",
+          "g......g",
+          "g......g",
+          "g......g",
+          "gggggggg"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     },
     "indicator": {
@@ -744,15 +972,21 @@
         "r": "#884422",
         "w": "#ffcc88"
       },
-      "pixels": [
-        "........",
-        "...wR...",
-        "..wRRR..",
-        ".wRRRRR.",
-        "..wRRR..",
-        "...wR...",
-        "........",
-        "........"
+      "frames": [
+        [
+          "........",
+          "...wR...",
+          "..wRRR..",
+          ".wRRRRR.",
+          "..wRRR..",
+          "...wR...",
+          "........",
+          "........"
+        ]
+      ],
+      "origin": [
+        0,
+        0
       ]
     }
   }
